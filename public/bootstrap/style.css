@@ -1,0 +1,57 @@
+.Name-school{
+    width: 650px;
+    height: auto;
+    overflow: hidden;
+
+    margin-left: 150px;
+    display: flex;
+    justify-content: center;
+}
+.Name-school h2{
+    margin-top: 8px;
+    font-size: 20px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 10px;
+}
+.info p{
+    font-size: 9.5px;
+    color: white;
+    margin-bottom:  0px;
+    font-family: 'Battambang';
+    font-weight: 600;
+}
+#logo-school{
+    height: 48px;
+    /* margin-right: 21px; */
+}
+.logo-sidebar{
+        /* margin-right: 21px; */
+    margin-right: 21px;
+}
+.btn-custom-size {
+    font-size: 12px;
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    font-size: 0.875rem; /* Adjust font size as needed */
+}
+.btn-group-sm{
+    width: 74px;
+    height: 32px;
+}
+.sp-font{
+    font-size: 12px;
+}
+/* .Logo-School{
+    width: 230px;
+    height: 50px;
+
+    margin-top: 0%;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+.Logo-School img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+} */

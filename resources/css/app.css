@@ -1,0 +1,6 @@
+ resources/views/pagination/default.blade.php */
+
+.pagination li a {
+    padding: 6px 12px;
+    /* Other styles... */
+}
