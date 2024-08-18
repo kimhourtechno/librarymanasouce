@@ -233,7 +233,6 @@
                 <li class="nav-item">
                   <a href="{{ route('return.index') }}" class="nav-link">
 
-                    <i class="far fa-solid fa-folder"></i>
                     <p>Story Return</p>
                   </a>
                 </li>

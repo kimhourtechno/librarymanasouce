@@ -61,54 +61,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/search/thisweek', [SearchController::class, 'searchThisweek'])->name('search.thisweek');
     Route::get('/search/thismonth', [SearchController::class, 'searchThismonth'])->name('search.thismonth');
 });
-// Route::get('/search/today','App\Http\Controllers\SearchController@searchToday')->name('search.today');
-// Route::get('/search/yesterday','App\Http\Controllers\SearchController@searchYesterday')->name('search.yesterday');
-// Route::get('/search/thisweek','App\Http\Controllers\SearchController@searchThisweek')->name('search.thisweek');
-// Route::get('/search/thimonth','App\Http\Controllers\SearchController@searchThismonth')->name('search.thismonth');
-// ///user
-//  Route::get('/login', 'App\Http\Controllers\UserController@login')->name('login');
-//  Route::post('/login/dologin', 'App\Http\Controllers\UserController@dologin');
+
 //
-//
-// Route::get('/return/{borrow_id}','App\Http\Controllers\BorrowController@return')->name('return.edit');
-;
-// Route::get('/return/edit/{borrow_id}','App\Http\Controllers\StudentController@edit')->name('return.edit');
+
 Route::resource('/return','App\Http\Controllers\ReturnController')->except(['destroy']);
 Route::get('/return/delete/{id}','App\Http\Controllers\StudentController@delete')->name('return.delete');
 //
 Route::get('/membership','App\Http\Controllers\MembershipController@addmember');
 //
-// Route::get('/return','App\Http\Controllers\ReturnController@return');
+
 Route::resource('/borrow','App\Http\Controllers\BorrowController');
 
-// Route::get('/login', 'App\Http\Controllers\UserController@login');
-// Route::post('/login/dologin', 'App\Http\Controllers\UserController@do_login');
-// Route::get('/logout', 'App\Http\Controllers\UserController@logout');
-// =====mainform===
 Route::get('/homemenu', 'App\Http\Controllers\HomemenuController@index');
-//student
-// Route::get('/student','App\Http\Controllers\StudentController@index');
-// Route::get('/studentregister','App\Http\Controllers\StudentController@register');
-// Route::post('/student/save','App\Http\Controllers\StudentController@save');
-//book====
-// Route::get('/listbook', 'App\Http\Controllers\BookController@index');
-// Route::get('/addbook','App\Http\Controllers\BookController@add');
-// Route::post('/book/add','App\Http\Controllers\BookController@save');
-// Route::get('/book/delete/{id}','App\Http\Controllers\BookController@delete');
-// Route::get('/book/edit/{id}','App\Http\Controllers\BookController@edit');
-// Route::post('book/update','App\Http\Controllers\BookController@update');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-//design master page
-Route::get('/master','App\Http\Controllers\masterController@index');
-Route::get('/master1','App\Http\Controllers\master1Controller@index1');
 
-Route::get('/about', 'App\Http\Controllers\AboutController@index');
-Route::get('/contact', 'App\Http\Controllers\ContactController@index');
-//view rout
 Route::view('/register', 'register');
 Route::post('/register/save','App\Http\Controllers\RegisterController@save')
         ->name('register.name');
@@ -133,12 +100,3 @@ Route::get('/category/delete/{id}', 'App\Http\Controllers\CategoryController@del
         ->name('category.delete');
 
 Route::get('/region','App\Http\Controllers\RegionController@index');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Testing session
-//Route::get('/test','App\Http\Controllers\SessionController@test');
-
-//login test
-// Route::get('/login', 'App\Http\Controllers\UserController@login');
-// Route::post('/login/dologin', 'App\Http\Controllers\UserController@do_login');
-// Route::get('/logout', 'App\Http\Controllers\UserController@logout');

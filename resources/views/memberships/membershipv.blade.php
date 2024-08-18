@@ -16,48 +16,38 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    {{-- <th style="width: 10px">NO</th> --}}
-                  <th>Student Name</th>
-                  <th>Gender</th>
-                  <th>Member</th>
-                  <th>Phone</th>
 
-                  <th>Book Borrow</th>
-                  <th>status</th>
-                  <th >action</th>
+                        <th>Borrow ID</th>
+                        <th>Borrower</th>
+                        <th>Borrow Date</th>
+                        <th>Return Date</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($students as $s)
+                    @foreach($borrows as $borrow)
                     <tr>
+                        <td>BR{{ $borrow->borrow_id }}</td>
 
-                        <td>{{ $s->name }}</td>
-                        <td>{{ $s->gender }}</td>
-                        <td>{{ $s->member_name}}</td>
-                        <td>{{ $s->phone }}</td>
-                        <td>{{ $s->borrowbook ?? 'N/A' }}</td>
+                        <td>{{ $borrow->student_name }}</td>
+                        <td>{{ $borrow->borrow_date }}</td>
+                        <td>{{ $borrow->return_date }}</td>
+                        <td>{{ now()->format('Y-m-d') }}</td>
                         <td>
-                            @if($s->borrowbook === 'N/A' || empty($s->borrowbook))
-                                No Action
-                            @else
-                                Action Taken
-                            @endif
+                            status
                         </td>
-
-
-                        {{-- <td>{{ $s->borrowbook }}</td> --}}
-
                         <td>
-
-                            <a href="{{ route('borrow.edit',$s->id) }}">
-                                <i class="fa-solid fa-right-from-bracket" style="color: #989ba0;"></i>
-                            </a>
-
+                            <i class="fa-regular fa-eye" style="color: #0f4d10;"></i>
+                            <i class="fa-solid fa-swatchbook"></i>
+                            <i class="fa-solid fa-link-slash" style="color: #533518;"></i>
                         </td>
-
 
                     </tr>
-                    @endforeach
+                @endforeach
+
 
                  </tbody>
 

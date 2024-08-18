@@ -159,15 +159,14 @@
               </ul>
           </li>
         {{-- ==============User========= --}}
-        <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+        <li class="nav-item ">
+            <a href{{ route('user.index') }} class="nav-link active">
                 <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
               <p>
                 User
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            {{-- <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('user.create') }}" class="nav-link">
 
@@ -176,15 +175,15 @@
                 </a>
               </li>
             </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
+            <ul class="nav nav-treeview"> --}}
+                {{-- <li class="nav-item">
                   <a href="{{ route('user.index') }}" class="nav-link active">
 
                     <i class="far fa-solid fa-folder"></i>
                     <p>List User</p>
                   </a>
                 </li>
-              </ul>
+              </ul> --}}
           </li>
 
 
