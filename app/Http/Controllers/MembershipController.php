@@ -13,12 +13,10 @@ use function Laravel\Prompts\select;
 class MembershipController extends Controller
 {
     public function addmember(){
-
-        $data['borrows'] = Borrow::where('borrows.action', 1) // Specify 'borrows.action'
-        ->join('students', 'borrows.user_id', '=', 'students.id')
-        ->select('borrows.*', 'students.name as student_name')
+        $data['students'] = Student::leftJoin('borrows', 'students.id', '=', 'borrows.user_id')
+        ->where('students.action', 0) // Ensure that only students with action = 1 are included
+        ->select('students.*', 'borrows.borrow_id', 'borrows.borrow_date', 'borrows.return_date', 'borrows.due_date')
         ->get();
-       
 
     return view('memberships.membershipv', $data);
 

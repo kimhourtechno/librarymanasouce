@@ -51,6 +51,8 @@ Route::middleware(['auth'])->group(function () {
 // Route::get('/student/delete/{id}','App\Http\Controllers\StudentController@delete')->name('student.delete');
 // //search
 Route::middleware(['auth'])->group(function () {
+    Route::resource('/borrow', 'App\Http\Controllers\BorrowController');
+
     Route::resource('/book', BookController::class)->except(['destroy','show']);
     Route::get('/book/search', [BookController::class, 'search'])->name('book.search');
     Route::resource('/author', AuthorController::class);
@@ -70,7 +72,6 @@ Route::get('/return/delete/{id}','App\Http\Controllers\StudentController@delete'
 Route::get('/membership','App\Http\Controllers\MembershipController@addmember');
 //
 
-Route::resource('/borrow','App\Http\Controllers\BorrowController');
 
 Route::get('/homemenu', 'App\Http\Controllers\HomemenuController@index');
 

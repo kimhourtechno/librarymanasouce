@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use App\models\BorrowDetail;
 use App\Models\Student;
 use App\Models\Book;
 use App\Models\Borrow;
@@ -78,6 +78,7 @@ class BorrowController extends Controller
         $borrow->user_id = $r->student_id;
         $borrow->book_id = $r->book_id;
         $borrow->return_date = $r->return_date;
+      
         if ($borrow->save()) {
             $book->available -= 1;
             $book->save();
