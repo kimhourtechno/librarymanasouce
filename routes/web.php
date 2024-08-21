@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BorrowController;
 
 
 use App\Models\Author;
@@ -46,12 +47,15 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/student', StudentController::class)->except(['destroy','show']);
     Route::get('/student/delete/{id}', [StudentController::class, 'delete'])->name('student.delete');
 });
-// Route::get('/student/search/','App\Http\Controllers\StudentController@search')->name('student.search');
-// Route::resource('/student','App\Http\Controllers\StudentController')->except(['destroy']);
-// Route::get('/student/delete/{id}','App\Http\Controllers\StudentController@delete')->name('student.delete');
-// //search
+
 Route::middleware(['auth'])->group(function () {
-    Route::resource('/borrow', 'App\Http\Controllers\BorrowController');
+    Route::resource('/borrow', 'App\Http\Controllers\BorrowController')->except('edit');
+    Route::get('/borrow/edit/{id}/{borrow_id}', [BorrowController::class, 'edit'])->name('borrow.edit');
+
+    // Route::get('/borrow/{student_id}/{borrow_id}/edit', [BorrowController::class, 'edit'])->name('borrow.edit');
+
+
+    // Route::resource('/borrow', 'App\Http\Controllers\BorrowController');
 
     Route::resource('/book', BookController::class)->except(['destroy','show']);
     Route::get('/book/search', [BookController::class, 'search'])->name('book.search');

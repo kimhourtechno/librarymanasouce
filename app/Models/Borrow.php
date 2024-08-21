@@ -13,5 +13,13 @@ class Borrow extends Model
     public $incrementing = true;
     protected $keyType = 'int';
     protected $table = 'borrows';
+    protected $fillable = [
+        'user_id',
+        'book_id',
+        'return_date',
+        'action',
+        // Add other fillable fields as needed
+    ];
+
 
 }

@@ -17,12 +17,12 @@
               <div class="card-footer">
                 <h3>Information Student</h3>
               </div>
-              <form action="{{ route('borrow.store',$student->id) }}" method="POST" autocomplete="off">
+              <form action="{{ route('borrow.store',$student->id, ) }}" method="POST" autocomplete="off">
                 @csrf
                 <input type="hidden" name="student_id" value="{{ $student->id }}">
 
                 <div class="card-body p-0">
-                    <div class="bs-stepper">
+                    <div class="bs-stepper" style="padding-right: 26px;">
                       <div class="bs-stepper-header" role="tablist">
                         <!-- your steps here -->
                         <div >
@@ -141,7 +141,7 @@
                       <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    {{-- <tbody>
                         @foreach ($borrows as $br )
                         <tr>
 
@@ -159,7 +159,7 @@
                             </td>
                         </tr>
                         @endforeach
-                    </tbody>
+                    </tbody> --}}
 
                   </table>
                 </div>
@@ -173,7 +173,8 @@
       <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-  </div>
+</div>
+
 @endsection
 @section('js')
 

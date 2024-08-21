@@ -7,33 +7,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 
+  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/bs-stepper/css/bs-stepper.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 
 
     {{-- =======link============ --}}
     <link rel="stylesheet" href="{{ asset('chosen/chosen.css') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
-    <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="{{ asset('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
-    <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-    <!-- Bootstrap4 Duallistbox -->
-    <link rel="stylesheet" href="{{ asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
-    <!-- BS Stepper -->
-    <link rel="stylesheet" href="{{ asset('plugins/bs-stepper/css/bs-stepper.min.css') }}">
-    <!-- dropzonejs -->
-    <link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 
+
+  <!-- Google Font: Source Sans Pro -->
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -177,75 +168,94 @@
 
 
          <!-- =======Table====== -->
-                 <!-- =======Table====== -->
-                 <li class="nav-item">
-                    <a href="{{ url('#') }}" class="nav-link ">
-                        <i class="fa fa-graduation-cap"></i>
-                    <p>
-                        Dashboard
+         <li class="nav-item">
+            <a href="#" class="nav-link">
+              {{-- <i class="nav-icon fas fa-table"></i> --}}
+              <i class="fa fa-graduation-cap"></i>
 
-                    </p>
-                    </a>
+              <p>
+                Student
+                <i class="fas fa-angle-left right"></i>
 
-                </li>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('student') }}" class="nav-link ">
-                    <i class="fa fa-graduation-cap"></i>
-                  <p>
-                    Student
+                <a href="{{ route('student.create') }}" class="nav-link">
 
-                  </p>
+                  <i class="far fa-solid fa-folder"></i>
+
+
+
+                  <p>Student Register</p>
                 </a>
-
               </li>
-              <li class="nav-item">
-                <a href="{{ url('book') }}" class="nav-link ">
-                    <i class="fa fa-solid fa-book"></i>
-                    <p>
-                      book
 
-                    </p>
+              <li class="nav-item">
+                    <a href="{{ url('student') }}" class="nav-link">
+                  <i class="far fa-solid fa-folder"></i>
+
+                  <p>Student List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- =======Book===== --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa fa-solid fa-book"></i>
+              <p>
+                book
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('book') }}" class="nav-link">
+
+                  <i class="far fa-solid fa-folder"></i>
+
+                  <p>Add book</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('return.index') }}" class="nav-link">
+
+                    <p>Story Return</p>
                   </a>
+                </li>
+              </ul>
+          </li>
 
-              </li>
-              {{-- ==borrow and return=== --}}
-              <li class="nav-item menu-open">
-                <a href="{{ url('membership') }}" class="nav-link active ">
-                    <i class="fa-solid fa-retweet"></i>
-                  <p>
-                    Borrower
-                  </p>
+          {{-- =========Borror and Return===== --}}
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+                <i class="fa-solid fa-retweet"></i>
+              <p>
+                Borrow and Return
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('membership') }}" class="nav-link active">
+                  <i class="far fa-solid fa-folder"></i>
+                  <p>Member</p>
                 </a>
-
               </li>
-             {{-- ==============User========= --}}
-             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
-                  <p>
-                    User
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ route('user.create') }}" class="nav-link">
+            </ul>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('book') }}" class="nav-link">
 
-                      <i class="far fa-solid fa-folder"></i>
-                      <p>Create User</p>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <a href="{{ route('user.index') }}" class="nav-link">
-
-                        <i class="far fa-solid fa-folder"></i>
-                        <p>List User</p>
-                      </a>
-                    </li>
-                  </ul>
-            </li>
+                    <i class="far fa-solid fa-folder"></i>
+                    <p>List Book</p>
+                  </a>
+                </li>
+              </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -275,6 +285,31 @@
 
 
 @yield('js')
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
+<!-- InputMask -->
+<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+<!-- Date Range Picker -->
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+<!-- Bootstrap Color Picker -->
+<script src="{{ asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<!-- Bootstrap Switch -->
+<script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+<!-- BS-Stepper -->
+<script src="{{ asset('plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
+<!-- DropzoneJS -->
+<script src="{{ asset('plugins/dropzone/min/dropzone.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>

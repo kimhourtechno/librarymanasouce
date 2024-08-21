@@ -32,9 +32,8 @@
                 <tbody>
                     @foreach($students as $student)
                     <tr>
-                        <td style="display: none;">{{ $student->id }}</td>
+                        <td style="display: none">{{ $student->id }}</td>
                         <td>{{ $student->borrow_id }}</td>
-
                         <td>{{ $student->name }}</td>
                         <td>{{ $student->borrow_date }}</td>
                         <td>{{ $student->return_date }}</td>
@@ -43,10 +42,10 @@
                         <td>USER1</td>
 
                         <td>
-                            <a  href="{{ route('borrow.edit', $student->id) }}" class="btn btn-info btn-sm" title="View">
+                            <a href="{{ route('borrow.edit', [$student->id, $student->borrow_id]) }}" class="btn btn-info btn-sm" title="View">
                                 <i class="fas fa-eye" style="color: rgb(39, 39, 94);"></i>
                             </a>
-                            <a  class="btn btn-success btn-sm" title="Return Book">
+                            <a   class="btn btn-success btn-sm" title="Return Book">
                                 <i class="fas fa-undo" style="color: rgb(27, 113, 27);"></i>
                             </a>
                             <a  class="btn btn-danger btn-sm" title="Return Broken">

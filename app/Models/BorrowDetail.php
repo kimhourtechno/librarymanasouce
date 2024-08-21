@@ -10,4 +10,6 @@ class BorrowDetail extends Model
     use HasFactory;
     protected $table = 'borrowdetails'; // Specify the correct table name
     protected $fillable = ['borrow_id', 'book_id'];
+    public $timestamps = false;
+
 }
