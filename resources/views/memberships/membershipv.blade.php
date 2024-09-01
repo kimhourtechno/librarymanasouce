@@ -6,35 +6,40 @@
         <div class="col-12">
           <div class="card" style="margin-top: 1rem">
             <div class="card-header">
-              <h2 class="card-title" style="font-size: 30px">Membership</h2>
+              <h2 class="card-title" style="font-size: 30px">Borrow Book</h2>
             </div>
-            <div class="card-header">
-              <h3 class="card-title">Membership borrowed and returned</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
+
+
+
+              <div class="card-body">
+                <div style="margin-bottom: 12px">
+                    <a href="borrow.add"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default"style="width: 100px;">
+                        <i class="fa-solid fa-plus fa-sm"></i>
+                        <span style="font-size: 17px"> Borrow </span>
+                    </a>
+                    <br>
+                </div>
+                <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
+                  <tr>
+                    <th>Borrow ID</th>
 
-                        <th>Borrow ID</th>
-
-                        <th>Borrower</th>
-                        <th>Borrow Date</th>
-                        <th>Return Date</th>
-                        <th>Due Date</th>
-                        <th>Status</th>
-                        <th>Borrow by</th>
-                        <th>Action</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach($students as $student)
+                    <th>Borrower</th>
+                    <th>Borrow Date</th>
+                    <th>Return Date</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Borrow by</th>
+                    <th>Action</th>
+                  </tr>
+               </thead>
+               <tbody>
+                @foreach($students as $student)
                     <tr>
-                        <td style="display: none">{{ $student->id }}</td>
+
+
                         <td>{{ $student->borrow_id }}</td>
-                        <td>{{ $student->name }}</td>
+                         <td>{{ $student->name }}</td>
                         <td>{{ $student->borrow_date }}</td>
                         <td>{{ $student->return_date }}</td>
                         <td>{{ now()->format('Y-m-d') }}</td>
@@ -42,9 +47,13 @@
                         <td>USER1</td>
 
                         <td>
+
+
                             <a href="{{ route('borrow.edit', [$student->id, $student->borrow_id]) }}" class="btn btn-info btn-sm" title="View">
                                 <i class="fas fa-eye" style="color: rgb(39, 39, 94);"></i>
                             </a>
+
+
                             <a   class="btn btn-success btn-sm" title="Return Book">
                                 <i class="fas fa-undo" style="color: rgb(27, 113, 27);"></i>
                             </a>
@@ -58,12 +67,39 @@
                     </tr>
                 @endforeach
 
+               </tbody>
 
-                 </tbody>
 
-              </table>
+             </table>
             </div>
-            <!-- /.card-body -->
+
+
+                <div class="modal fade" id="modal-default">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Borrow Book</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form action="{{ route('borrow.add') }}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+                                <label for="student_id">Borrower ID</label>
+                                <input type="text" class="form-control" id="student_id" name="student_id" required>
+                             </div>
+                              <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                              </div>
+
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
+            </form>
           </div>
           <!-- /.card -->
 
@@ -75,4 +111,6 @@
     </div>
     <!-- /.container-fluid -->
 </section>
+
 @endsection
+

@@ -17,9 +17,11 @@
               <div class="card-footer">
                 <h3>Information Student</h3>
               </div>
-              <form action="{{ route('borrow.store',$student->id, ) }}" method="POST" autocomplete="off">
+              <form action="{{ route('borrowdetail.store') }}" method="POST" autocomplete="off">
                 @csrf
                 <input type="hidden" name="student_id" value="{{ $student->id }}">
+                <input type="hidden" name="borrow_id" value="{{ $borrow->borrow_id }}">
+
 
                 <div class="card-body p-0">
                     <div class="bs-stepper" style="padding-right: 26px;">
@@ -33,6 +35,8 @@
                           </div>
                           <div class="line">
                             {{ $student->id }}
+                            {{-- {{ $borrow->borrow_id }} --}}
+
                         </div>
                         <div >
                           <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
@@ -111,6 +115,26 @@
                             <label for="exampleInputPassword1">Date Returned</label>
                             <input type="date" class="form-control" id="return_date" name="return_date">
                           </div>
+                          <div class="form-group">
+                            <div class="card-body p-0">
+                                <div class="bs-stepper">
+                                    <div  class="bs-stepper-header" role="tablist">
+                                        <div >
+                                            <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+
+                                              <span   class="bs-stepper-label">Borrow ID:  {{ $borrow->borrow_id }}</span>
+                                              <p>Borrow ID: {{ $student->borrow_id }}</p>
+
+                                            </button>
+                                          </div>
+                                          <div >
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+
                           <button class="btn btn-primary">Save</button>
                         </div>
 

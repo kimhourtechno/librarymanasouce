@@ -7,6 +7,8 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BorrowController;
+use App\Http\Controllers\BorrowDetailController;
+
 
 
 use App\Models\Author;
@@ -30,7 +32,6 @@ use App\Models\Author;
 // });
 ///User////
 Route::middleware(['auth', 'admin'])->group(function () {
-    // Route::resource('/users');
     Route::resource('/user', UserController::class);
     Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 
@@ -40,6 +41,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // use resource
 Route::middleware(['auth'])->group(function () {
+
     Route::get('/student/search', [StudentController::class, 'search'])->name('student.search');
 
     Route::get('/student/view/{id}', [StudentController::class, 'view'])->name('student.view');
@@ -49,13 +51,15 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('/borrow/add', [BorrowController::class, 'add'])->name('borrow.add');
+
     Route::resource('/borrow', 'App\Http\Controllers\BorrowController')->except('edit');
+    // Route::post('/borrow/store/{student_id}/{borrow_id}', [BorrowController::class, 'store'])->name('borrow.store');
     Route::get('/borrow/edit/{id}/{borrow_id}', [BorrowController::class, 'edit'])->name('borrow.edit');
 
-    // Route::get('/borrow/{student_id}/{borrow_id}/edit', [BorrowController::class, 'edit'])->name('borrow.edit');
 
+Route::post('/borrowdetail/store', [BorrowDetailController::class, 'store'])->name('borrowdetail.store');
 
-    // Route::resource('/borrow', 'App\Http\Controllers\BorrowController');
 
     Route::resource('/book', BookController::class)->except(['destroy','show']);
     Route::get('/book/search', [BookController::class, 'search'])->name('book.search');

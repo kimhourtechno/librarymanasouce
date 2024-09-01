@@ -12,7 +12,5 @@ class AuthorController extends Controller
         $i = $author->save();
         return redirect()->back()->with('message', 'Author added successfully.');
 
-        // $book->bookname = $r->bookname;
-
     }
 }

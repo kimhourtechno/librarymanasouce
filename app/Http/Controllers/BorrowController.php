@@ -14,7 +14,20 @@ use Illuminate\Contracts\Cache\Store;
 
 class BorrowController extends Controller
 {
+   public function add(Request $request){
+    $request->validate([
+        'student_id' => 'required|exists:students,id',
+    ]);
 
+    // Create a new borrow entry
+    $borrow = new Borrow();
+    $borrow->user_id = $request->student_id; // Assign student_id to user_id field
+    // Add any other fields that need to be saved
+    $borrow->save();
+
+    // Redirect or return response
+    return back()->with('success', 'Borrow record added successfully.');
+   }
 
     public function index(){
         return view('layouts.borrow.borrowm');
@@ -22,9 +35,11 @@ class BorrowController extends Controller
     public function edit($id, $borrow_id)
 
     {
-        $data ['book'] = Book::all();
-        $data ['student'] = Student::find($id);
-        return view('borrow_books.borrowv',$data);
+        
+        $book = Book::all();
+        $borrow = Borrow::find($borrow_id);
+        $student = Student::find($id);
+        return view('borrow_books.borrowv', compact('student', 'borrow', 'book'));
         // Logic to retrieve and edit the borrow record
         // Return view with necessary data
     }
@@ -44,29 +59,25 @@ class BorrowController extends Controller
     //     $data ['book'] = Book::all();
     //     return view('borrow_books.borrowv',$data);
     // }
-    public function store(Request $r){
-        $r->validate([
-            'student_id' => 'required|exists:students,id',
-            'book_id' => 'required|exists:books,id',
-            'return_date' => 'required|date',
-        ]);
+    public function store(Request $r)
+    {
+        // Validate the incoming request data
 
-        // Save the borrow record
-        $borrow = Borrow::create([
-            'user_id' => $r->student_id, // Ensure this maps correctly to your database schema
-            'return_date' => $r->return_date,
-            'action' => 1, // Assuming this field is required
-        ]);
+         // Validate the incoming request data
+    $r->validate([
+        'book_id' => 'required|exists:books,id',
+    ]);
 
-                $book = Book::find($r->book_id);
-        // Save the borrow_id to borrowdetail table
-        BorrowDetail::create([
-            'borrow_id' => $borrow->borrow_id,
-            'book_id' => $r->book_id,
-        ]);
 
-        // Redirect or return a response
-        return redirect()->route('borrow.index')->with('success', 'Borrow record created successfully.');
+
+
+        // Optionally, create a new borrow detail record
+        $borrowDetail = new BorrowDetail();
+        $borrowDetail->borrow_id = $r->borrow_id;
+        $borrowDetail->book_id = $r->input('book_id');
+        $borrowDetail->save();
+
+
     }
 
     // public function store(Request $r){

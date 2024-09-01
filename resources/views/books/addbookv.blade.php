@@ -110,7 +110,8 @@
                         </button>
                     </div>
                 </div>
-            </form><div class="modal fade" id="modal-default">
+            </form>
+            <div class="modal fade" id="modal-default">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -130,7 +131,7 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Conform</button>
                           </div>
-                    </form>
+                         </form>
                   </div>
                   <!-- /.modal-content -->
                 </div>

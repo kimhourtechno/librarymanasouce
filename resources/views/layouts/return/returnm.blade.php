@@ -209,11 +209,9 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 
 <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- AdminLTE App -->
 
-<!-- AdminLTE for demo purposes -->
-{{-- <!-- <script src="../../dist/js/demo.js"></script> --> --}}
-<!-- Page specific script -->
+
+
 <script>
   $(function () {
 
