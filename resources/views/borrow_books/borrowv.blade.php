@@ -72,6 +72,11 @@
 
                       <div class="bs-stepper-content">
                         <!-- your steps content here -->
+                        @if (session('info'))
+                            <div class="alert alert-info">
+                                {{ session('info') }}
+                            </div>
+                        @endif
 
                         <div>
                             @if (session('checkbook'))
@@ -113,25 +118,61 @@
 
                           <div class="form-group">
                             <label for="exampleInputPassword1">Date Returned</label>
-                            <input type="date" class="form-control" id="return_date" name="return_date">
+                            {{-- <input type="date" class="form-control" id="return_date" name="return_date"> --}}
+                            <input type="date" class="form-control" id="return_date" name="return_date" {{ $borrow->return_date ? 'disabled' : '' }}>
+                            @if($borrow->return_date)
+                                <small class="form-text text-muted">Return date is already set: {{ $borrow->return_date }}</small>
+                            @endif
                           </div>
-                          <div class="form-group">
+                          <div>
                             <div class="card-body p-0">
                                 <div class="bs-stepper">
                                     <div  class="bs-stepper-header" role="tablist">
-                                        <div >
+                                        <div class="bs-stepper">
+                                            <div class="bs-stepper-header" role="tablist">
+                                                <!-- Step 1: ID Card -->
+                                                <div class="d-flex align-items-center">
+                                                    <label class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+                                                        <span class="bs-stepper-label">Borrow ID: {{ $borrow->borrow_id }}</span>
+                                                    </label>
+
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <label class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+                                                        <span class="bs-stepper-label">QTY:</span>
+                                                    </label>
+                                                    <input type="text" class="form-control " id="quantity" name="qty" style="margin-bottom: 8px;">
+                                                </div>
+
+                                                <div class="d-flex align-items-center">
+                                                    <label class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+                                                        <span class="bs-stepper-label">Unit Price:</span>
+                                                    </label>
+                                                    <input type="text" class="form-control " id="quantity" name="qty" style="margin-bottom: 8px;">
+                                                </div>
+                                               
+
+
+                                            </div>
+                                        </div>
+
+                                        {{-- <div >
                                             <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
 
                                               <span   class="bs-stepper-label">Borrow ID:  {{ $borrow->borrow_id }}</span>
-                                              <p>Borrow ID: {{ $student->borrow_id }}</p>
 
                                             </button>
-                                          </div>
-                                          <div >
+                                            <input type="text" class="form-control ml-2" id="new_data" name="new_data" placeholder="Enter new data">
 
-                                        </div>
+
+                                         </div>
+
+
+                                        </div> --}}
                                     </div>
+
                                 </div>
+
                             </div>
                           </div>
 
