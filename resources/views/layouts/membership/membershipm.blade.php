@@ -70,7 +70,7 @@
             </a>
 
          </li>
-
+         
       <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}" role="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fa-solid fa-right-from-bracket"></i>
@@ -111,8 +111,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
          <li class="nav-item">
-            <a href="{{ url('student') }}" class="nav-link ">
-                <i class="fa fa-graduation-cap"></i>
+            <a href="{{ route('dashboard.view')}}" class="nav-link ">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
                 Dashboard
 

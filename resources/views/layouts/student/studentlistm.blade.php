@@ -91,8 +91,17 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
+               <li class="nav-item">
+                <a href="{{ route('dashboard.view')}}" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Dashboard
 
-             <!-- =======Table====== -->
+                </p>
+                </a>
+
+            </li>
+                 <!-- =======Table====== -->
             <li class="nav-item">
                 <a href="{{ url('#') }}" class="nav-link ">
                     <i class="fa fa-graduation-cap"></i>
@@ -124,7 +133,7 @@
 
           </li>
           {{-- ==borrow and return=== --}}
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="{{ url('membership') }}" class="nav-link ">
                 <i class="fa-solid fa-retweet"></i>
               <p>
@@ -175,10 +184,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 1.2.1
-    </div>
-    <strong>Copyright &copy; 2014-2021</a>.</strong> All rights reserved.
+ 
   </footer>
 
   <!-- Control Sidebar -->

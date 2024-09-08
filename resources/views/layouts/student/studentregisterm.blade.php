@@ -81,7 +81,7 @@
     <!-- Right navbar links -->
 
     <ul class="navbar-nav ml-auto">
-        
+
         <a class="nav-link" href="{{ route('logout') }}" role="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fa-solid fa-right-from-bracket"></i>
         </a>
@@ -124,90 +124,87 @@
                with font-awesome or any other icon font library -->
 
           <!-- =======Table====== -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              {{-- <i class="nav-icon fas fa-table"></i> --}}
-              <i class="fa fa-graduation-cap"></i>
 
-              <p>
-                Student
-                <i class="fas fa-angle-left right"></i>
-
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-
-              <li class="nav-item">
-                    <a href="{{ url('student') }}" class="nav-link active">
-                  <i class="far fa-solid fa-folder"></i>
-
-                  <p>Student List</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          {{-- =======Book===== --}}
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fa fa-solid fa-book"></i>
-              <p>
-                book
-                <i class="fas fa-angle-left right"></i>
-              </p>
+            <a href="{{ route('dashboard.view')}}" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+                Dashboard
+
+            </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('book/create') }}" class="nav-link">
 
-                  <i class="far fa-solid fa-folder"></i>
+        </li>
+             <!-- =======Table====== -->
+        <li class="nav-item">
+            <a href="{{ url('#') }}" class="nav-link ">
+                <i class="fa fa-graduation-cap"></i>
+            <p>
+                Dashboard
 
-                  <p>Add book</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ url('book') }}" class="nav-link">
-                    {{-- <i class="far fa-circle nav-icon"></i> --}}
-                    {{-- <i class="fa fa-address-card"></i> --}}
-                    <i class="far fa-solid fa-folder"></i>
-                    <p>List Book</p>
-                  </a>
-                </li>
-              </ul>
+            </p>
+            </a>
+
+        </li>
+      <li class="nav-item">
+        <a href="{{ url('student') }}" class="nav-link active">
+            <i class="fa fa-graduation-cap"></i>
+          <p>
+            Student
+
+          </p>
+        </a>
+
+      </li>
+      <li class="nav-item">
+        <a href="{{ url('book') }}" class="nav-link ">
+            <i class="fa fa-solid fa-book"></i>
+            <p>
+              book
+
+            </p>
+          </a>
+
+      </li>
+      {{-- ==borrow and return=== --}}
+      <li class="nav-item">
+        <a href="{{ url('membership') }}" class="nav-link ">
+            <i class="fa-solid fa-retweet"></i>
+          <p>
+            Borrower
+          </p>
+        </a>
+
+      </li>
+     {{-- ==============User========= --}}
+     <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
+          <p>
+            User
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('user.create') }}" class="nav-link">
+
+              <i class="far fa-solid fa-folder"></i>
+              <p>Create User</p>
+            </a>
           </li>
-
-          </li>
-            {{-- ===User===== --}}
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
-                  <p>
-                    User
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ route('user.create') }}" class="nav-link">
-
-                      <i class="far fa-solid fa-folder"></i>
-                      <p>Create User</p>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <a href="{{ route('user.index') }}" class="nav-link">
-
-                        <i class="far fa-solid fa-folder"></i>
-                        <p>List User</p>
-                      </a>
-                    </li>
-                  </ul>
-              </li>
-
         </ul>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('user.index') }}" class="nav-link">
+
+                <i class="far fa-solid fa-folder"></i>
+                <p>List User</p>
+              </a>
+            </li>
+          </ul>
+    </li>
+
       </nav>
       <!-- /.sidebar-menu -->
     </div>

@@ -109,9 +109,9 @@
                with font-awesome or any other icon font library -->
 
 
-               <li class="nav-item">
-                <a href="{{ url('student') }}" class="nav-link ">
-                    <i class="fa fa-graduation-cap"></i>
+               <li class="nav-item ">
+                <a href="{{ route('dashboard.view')}}" class="nav-link  ">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
 
@@ -233,7 +233,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
- 
+
     </div>
 
   </footer>

@@ -7,6 +7,8 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BorrowController;
+use App\Http\Controllers\DashboardController;
+
 use App\Http\Controllers\BorrowDetailController;
 use App\Http\Controllers\ReturnController;
 
@@ -52,6 +54,11 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/membership','App\Http\Controllers\MembershipController@addmember');
+
+    ///Dash Board
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard.view');
+
     //return
     Route::resource('/return','App\Http\Controllers\ReturnController')->except(['destroy']);
     Route::get('/return/delete/{id}','App\Http\Controllers\StudentController@delete')->name('return.delete');
@@ -82,7 +89,6 @@ Route::post('/borrowdetail/store', [BorrowDetailController::class, 'store'])->na
 
 
 //
-Route::get('/membership','App\Http\Controllers\MembershipController@addmember');
 //
 
 
