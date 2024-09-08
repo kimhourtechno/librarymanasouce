@@ -33,10 +33,10 @@
                 </div><!-- /.container-fluid -->
               </section>
               @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+                 <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
 
             <div class="card-body">
                 <div class="row">
@@ -90,8 +90,10 @@
                             <a href="{{ route('student.edit', $student->id) }}" >
                                 <i class="fa-solid fa-pen-to-square" style="color:#4962a3;"></i>
                             </a>
-                            <a href="{{ route('student.delete', $student->id) }}" onclick="return confirm('Would you like to add a library member?')">
-                                <i class="fa-sharp fa-solid fa-plus" style="color: #40755e;"></i></a>
+                            <a href="{{ route('student.view', $student->id) }}" onclick="return confirm('Would you like to add a library member?')">
+                                <i class="fa-sharp fa-solid fa-plus" style="color: #40755e;"></i>
+                            </a>
+
                         </td>
                     </tr>
                     @endforeach
@@ -116,7 +118,10 @@
                          </a>
                          <a href="{{ route('student.view',$s->id) }}"  onclick="return confirm('Would you like to add a library member?')">
                             <i class="fa-solid fa-eye" style="color:#40755e"></i>
-                            {{-- <i class="fa-sharp fa-solid fa-plus" style="color: #a0a6b1;"></i></a> --}}
+                        </a>
+                        <a href="{{ route('student.delete',$s->id) }}"  onclick="return confirm('Would you like to add a library member?')">
+                            <i class="fa-solid fa-eye" style="color:#40755e"></i>
+                        </a>
 
                      </td>
 

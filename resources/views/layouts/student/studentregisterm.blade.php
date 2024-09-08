@@ -18,6 +18,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Advanced form element</title>
+
+
 {{-- <! --------ICON------> --}}
 <link href="{{ asset('bootstrap/style.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
@@ -77,7 +79,9 @@
     </ul>
 
     <!-- Right navbar links -->
+
     <ul class="navbar-nav ml-auto">
+        
         <a class="nav-link" href="{{ route('logout') }}" role="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fa-solid fa-right-from-bracket"></i>
         </a>
@@ -172,34 +176,8 @@
                 </li>
               </ul>
           </li>
-          {{-- =========Borror and Return===== --}}
-          {{-- <li class="nav-item menu-open">
-            <a href="{{ url('membership') }}" class="nav-link active">
-                <i class="fa-solid fa-retweet"></i>
-              <p>
-                Borrower
 
-              </p>
-            </a>
-            {{-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('membership') }}" class="nav-link active">
-
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Member</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ url('book') }}" class="nav-link">
-
-                    <i class="far fa-solid fa-folder"></i>
-                    <p>List Book</p>
-                  </a>
-                </li>
-              </ul> --}}
-          </li> --}}
+          </li>
             {{-- ===User===== --}}
             <li class="nav-item">
                 <a href="#" class="nav-link">

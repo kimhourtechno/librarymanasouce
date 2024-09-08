@@ -36,8 +36,7 @@ class StudentController extends Controller
     public function index(){
         $data['students'] = Student::where('action',1)->get();
         return view('students.studentlistv',$data);
-        // $data['students'] = Student::all();
-        // return view('students.studentaddv',$data);
+
     }
     public function create(){
         $data['members'] = DB::table('members')
@@ -113,7 +112,7 @@ class StudentController extends Controller
         // $student = Student::find($id);
         // $i = $student->delete();
         $i= Student::where('id',$id)
-        ->update(['action'=>0]);
+        ->update(['action'=>1]);
         if($id){
             return redirect()->route('student.index')
             ->with('success','Data has been removed');

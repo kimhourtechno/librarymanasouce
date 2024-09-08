@@ -27,11 +27,11 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                @if(session('error'))
-    <p style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px;">
-        {{ session('error') }}
-    </p>
-@endif
+                            @if(session('error'))
+                <p style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px;">
+                    {{ session('error') }}
+                </p>
+            @endif
                 <div class="row" style="margin-bottom: 12px">
 
                     <div class="col-sm-3">
@@ -86,7 +86,7 @@
                         <td>{{ $b->book_qty }}</td>
                         <td>{{ $b->date_post }}</td>
 
-                        <td>{{ $b->shelfname }}</td>
+                        <td>{{ $b->shelve_name }}</td>
                         <td>{{ $b->available }}</td>
                         <td>{{ $b->book_price }}</td>
 

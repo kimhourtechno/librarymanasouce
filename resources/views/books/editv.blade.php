@@ -63,12 +63,14 @@
                       <!-- /.form-group -->
                       <div class="form-group">
                           <label for="shelf_id">shelves</label>
-                          <select class="form-control" id="shelf_id" name="shelf_id" style="width: 100%;" required>
+                          <input type="text" class="form-control" id="shelve_name" name="shelve_name" value="{{ $books->shelve_name}}" required autofocus>
+
+                          {{-- <select class="form-control" id="shelf_id" name="shelf_id" style="width: 100%;" required>
                             <option value="">Select type of book</option>
                             @foreach ($shelves as $sh )
                                 <option value="{{ $sh->shelf_id }}" {{ $sh->shelf_id ==$books->shelf_id?'selected':'' }}>{{ $sh->shelf_name }}</option>
                             @endforeach
-                          </select>
+                          </select> --}}
                       </div>
                       <div class="form-group">
                         <label for="book_category_id">Type of Books</label>

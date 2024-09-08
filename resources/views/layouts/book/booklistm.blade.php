@@ -61,6 +61,11 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown user-menu">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+              <span class="d-none d-md-inline">{{ @Auth::user()->name }}</span>
+            </a>
+       </li>
         <a class="nav-link" href="{{ route('logout') }}" role="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fa-solid fa-right-from-bracket"></i>
         </a>
@@ -228,9 +233,9 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 1.2.1
+ 
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+
   </footer>
 
   <!-- Control Sidebar -->

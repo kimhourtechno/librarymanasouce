@@ -8,12 +8,16 @@ use App\models\BorrowDetail;
 use App\Models\Student;
 use App\Models\Book;
 use App\Models\Borrow;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 use Illuminate\Contracts\Cache\Store;
 
 class BorrowController extends Controller
 {
+
+
+
    public function add(Request $request){
     $request->validate([
         'student_id' => 'required|exists:students,id',
@@ -22,6 +26,8 @@ class BorrowController extends Controller
     // Create a new borrow entry
     $borrow = new Borrow();
     $borrow->user_id = $request->student_id; // Assign student_id to user_id field
+    $borrow->librarian_id = auth()->user()->id; // Set the librarian_id to the current user's ID
+
     // Add any other fields that need to be saved
     $borrow->save();
 
@@ -33,15 +39,21 @@ class BorrowController extends Controller
         return view('layouts.borrow.borrowm');
     }
     public function edit($id, $borrow_id)
-
     {
-        
+        $borrowDetails = BorrowDetail::where('borrow_id', $borrow_id)
+                    ->join('books', 'borrowdetails.book_id', '=', 'books.id')
+                    ->join('shelves', 'books.shelf_id', '=', 'shelves.shelf_id')
+                    ->select(
+                        'borrowdetails.*',
+                        'books.bookname as bookname',
+                        'shelf_name as shelfname'
+                        )
+                    ->get();
         $book = Book::all();
         $borrow = Borrow::find($borrow_id);
         $student = Student::find($id);
-        return view('borrow_books.borrowv', compact('student', 'borrow', 'book'));
-        // Logic to retrieve and edit the borrow record
-        // Return view with necessary data
+        return view('borrow_books.borrowv', compact('student', 'borrow', 'book','borrowDetails'));
+
     }
     // public function edit($id){
     //     $data['borrows'] = Borrow::where('user_id',$id)
@@ -64,11 +76,9 @@ class BorrowController extends Controller
         // Validate the incoming request data
 
          // Validate the incoming request data
-    $r->validate([
+         $r->validate([
         'book_id' => 'required|exists:books,id',
     ]);
-
-
 
 
         // Optionally, create a new borrow detail record

@@ -72,118 +72,89 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
          <!-- =======student====== -->
-          <li class="nav-item ">
-            <a href="#" class="nav-link">
+         <li class="nav-item">
+            <a href="{{ url('student') }}" class="nav-link ">
                 <i class="fa fa-graduation-cap"></i>
-              <p>
-                Student
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a  href="{{ route('student.create') }}" class="nav-link">
-                    <i class="far fa-solid fa-folder"></i>
-                  <p>Student Register</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('student') }}" class="nav-link">
-                  <!-- <i class="far fa-circle nav-icon"></i> -->
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Student List</p>
-                </a>
-              </li>
+            <p>
+                Dashboard
 
-            </ul>
-          </li>
-          {{-- ===Book======== --}}
+            </p>
+            </a>
+
+        </li>
+      <li class="nav-item">
+        <a href="{{ url('student') }}" class="nav-link">
+            <i class="fa fa-graduation-cap"></i>
+          <p>
+            Student
+
+          </p>
+        </a>
+
+      </li>
+      {{-- ========= --}}
+
+
           <li class="nav-item ">
-            <a href="#" class="nav-link ">
+            <a href="{{ url('book') }}" class="nav-link ">
               <i class="fa fa-solid fa-book"></i>
               <p>
                 book
-                <i class="fas fa-angle-left right"></i>
+
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('book/create') }}" class="nav-link">
-                  {{-- <i class="far fa-circle nav-icon"></i> --}}
-                  {{-- <i class="fa fa-address-card"></i> --}}
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Add book</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a  href="{{ url('book') }}" class="nav-link">
-                    {{-- <i class="far fa-circle nav-icon"></i> --}}
-                    {{-- <i class="fa fa-address-card"></i> --}}
-                    <i class="far fa-solid fa-folder"></i>
-                    <p>List Book</p>
-                  </a>
-                </li>
-              </ul>
-          </li>
-          {{-- =======Borrow and returned========== --}}
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+
+          </li>
+
+          <li class="nav-item ">
+            <a href="{{ url('membership') }}" class="nav-link">
                 <i class="fa-solid fa-retweet"></i>
               <p>
-                Borrow and Return
-                <i class="fas fa-angle-left right"></i>
+                Borrower
+
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('membership') }}" class="nav-link">
-                  {{-- <i class="far fa-circle nav-icon"></i> --}}
-                  {{-- <i class="fa fa-address-card"></i> --}}
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Member</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('return.index') }}" class="nav-link">
-                    {{-- <i class="far fa-circle nav-icon"></i> --}}
-                    {{-- <i class="fa fa-address-card"></i> --}}
-                    <i class="far fa-solid fa-folder"></i>
-                    <p>Story Return</p>
-                  </a>
-                </li>
-              </ul>
+
           </li>
-        {{-- ==============User========= --}}
-        <li class="nav-item ">
-            <a href{{ route('user.index') }} class="nav-link active">
+          <li class="nav-item">
+            <a href="{{ route('return.index') }}" class="nav-link ">
+                <i class="fa-solid fa-retweet"></i>
+              <p>
+                Story Returned
+
+              </p>
+            </a>
+
+          </li>
+
+
+        <li class="nav-item menu-open">
+            <a href="#" class="nav-link">
                 <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
               <p>
                 User
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            {{-- <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('user.create') }}" class="nav-link">
+                <a href="#" class="nav-link">
 
                   <i class="far fa-solid fa-folder"></i>
                   <p>Create User</p>
                 </a>
               </li>
             </ul>
-            <ul class="nav nav-treeview"> --}}
-                {{-- <li class="nav-item">
-                  <a href="{{ route('user.index') }}" class="nav-link active">
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('user.index') }}" class="nav-link">
 
                     <i class="far fa-solid fa-folder"></i>
                     <p>List User</p>
                   </a>
                 </li>
-              </ul> --}}
+              </ul>
           </li>
 
 
@@ -197,82 +168,7 @@
   <div class="content-wrapper">
     <!-- Main content -->
     @yield('userlistly')
-    {{-- <section class="content" style="padding-top: 1rem">
-      <div class="container-fluid">
 
-        <!-- /.row -->
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Show all users.</h3>
-
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>User</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Reason</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
-
-
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section> --}}
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

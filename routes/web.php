@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\BorrowDetailController;
+use App\Http\Controllers\ReturnController;
+
 
 
 
@@ -43,7 +45,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/student/search', [StudentController::class, 'search'])->name('student.search');
-
     Route::get('/student/view/{id}', [StudentController::class, 'view'])->name('student.view');
 
     Route::resource('/student', StudentController::class)->except(['destroy','show']);
@@ -51,10 +52,15 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    //return
+    Route::resource('/return','App\Http\Controllers\ReturnController')->except(['destroy']);
+    Route::get('/return/delete/{id}','App\Http\Controllers\StudentController@delete')->name('return.delete');
+    Route::get('/returnbook/{student_id}/{borrow_id}', [ReturnController::class, 'returnbook'])->name('returnbook.return');
+    Route::get('/books/details/{id}', [BookController::class, 'getBookDetails'])->name('books.details');
+// Add this route in your web.php
+Route::get('/fetch-book-details', [ReturnController::class, 'fetchBookDetails']);    //borrow
     Route::post('/borrow/add', [BorrowController::class, 'add'])->name('borrow.add');
-
     Route::resource('/borrow', 'App\Http\Controllers\BorrowController')->except('edit');
-    // Route::post('/borrow/store/{student_id}/{borrow_id}', [BorrowController::class, 'store'])->name('borrow.store');
     Route::get('/borrow/edit/{id}/{borrow_id}', [BorrowController::class, 'edit'])->name('borrow.edit');
 
 
@@ -74,8 +80,7 @@ Route::post('/borrowdetail/store', [BorrowDetailController::class, 'store'])->na
 
 //
 
-Route::resource('/return','App\Http\Controllers\ReturnController')->except(['destroy']);
-Route::get('/return/delete/{id}','App\Http\Controllers\StudentController@delete')->name('return.delete');
+
 //
 Route::get('/membership','App\Http\Controllers\MembershipController@addmember');
 //

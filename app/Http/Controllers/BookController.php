@@ -8,6 +8,18 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
+    public function getBookDetails($id)
+    {
+        $book = Book::find($id);
+
+        if ($book) {
+            return response()->json([
+                'unit_price' => $book->	book_price,
+            ]);
+        }
+        return response()->json(['error' => 'Book not found'], 404);
+
+    }
     public function search(Request $request)
 {
     $query = $request->input('query');
@@ -46,8 +58,6 @@ class BookController extends Controller
 
 
     public function index(){
-        // return view('layouts.book.booklistm');
-        // $data['books'] = Book::all();
 
         $data['books'] = Book::join('book_categorys', 'books.book_category_id', '=', 'book_categorys.book_category_id')
         ->join('authors', 'books.author_id', '=', 'authors.author_id')
@@ -80,7 +90,8 @@ class BookController extends Controller
         $book->book_price = $r->book_price;
         $book->date_post = $r->date_post;
         $book->author_id = $r->author_id ;
-        $book->shelf_id = $r->shelf_id;
+        $book->shelve_name = $r->shelve_name;
+        // $book->shelf_id = $r->shelf_id;
         $book->book_category_id = $r->book_category_id;
         $book->years_published = $r->years_published;
         $book->lost_price = $r->lost_price;

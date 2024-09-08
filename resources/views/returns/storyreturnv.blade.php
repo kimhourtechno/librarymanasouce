@@ -19,7 +19,6 @@
                     <div class="btn-group btn-group-sm">
                         <a class="btn btn-custom-size bg-gradient-secondary" href="{{ route('search.today') }}"> <span class="sp-font">Today</span> </a>
                      </div>
-
                     <div class="btn-group btn-group-sm">
                         <a class="btn btn-custom-size bg-gradient-secondary" href="{{ route('search.yesterday') }}"><span class="sp-font">Yesterday</span></a>
                    </div>
@@ -32,8 +31,6 @@
                 <div class="btn-group btn-group-sm">
                     <a class="btn btn-block bg-gradient-primary"  onclick="printPage()" href="#" style="padding: 4px"><span class="sp-font">Print</span></a>
                 </div>
-
-
 
                 </div>
              </div>

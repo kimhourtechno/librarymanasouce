@@ -22,7 +22,6 @@
                 <input type="hidden" name="student_id" value="{{ $student->id }}">
                 <input type="hidden" name="borrow_id" value="{{ $borrow->borrow_id }}">
 
-
                 <div class="card-body p-0">
                     <div class="bs-stepper" style="padding-right: 26px;">
                       <div class="bs-stepper-header" role="tablist">
@@ -35,8 +34,6 @@
                           </div>
                           <div class="line">
                             {{ $student->id }}
-                            {{-- {{ $borrow->borrow_id }} --}}
-
                         </div>
                         <div >
                           <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
@@ -99,7 +96,6 @@
                                 {{ session('success') }}
                             </div>
                              @endif
-
                           @if(session('error'))
                             <div class="alert alert-danger">
                                 {{ session('error') }}
@@ -107,18 +103,15 @@
                              @endif
                           <div class="form-group">
                             <label for="">Book</label>
-
                             <select name="book_id" id="book_id" class="form-control select2">
                                 <option value="" required>select</option>
                                 @foreach($book as $b)
                                     <option value="{{ $b->id }}" required>{{ $b->bookname }}</option>
                                 @endforeach
                             </select>
-                          </div>
-
+                        </div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">Date Returned</label>
-                            {{-- <input type="date" class="form-control" id="return_date" name="return_date"> --}}
                             <input type="date" class="form-control" id="return_date" name="return_date" {{ $borrow->return_date ? 'disabled' : '' }}>
                             @if($borrow->return_date)
                                 <small class="form-text text-muted">Return date is already set: {{ $borrow->return_date }}</small>
@@ -139,36 +132,21 @@
                                                 </div>
                                                 <div class="d-flex align-items-center">
                                                     <label class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
-                                                        <span class="bs-stepper-label">QTY:</span>
+                                                       <span class="bs-stepper-label">QTY:</span>
                                                     </label>
-                                                    <input type="text" class="form-control " id="quantity" name="qty" style="margin-bottom: 8px;">
+                                                    <input type="text" class="form-control " id="qty" name="qty" style="margin-bottom: 8px;">
                                                 </div>
-
                                                 <div class="d-flex align-items-center">
                                                     <label class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
-                                                        <span class="bs-stepper-label">Unit Price:</span>
+                                                        <span class="bs-stepper-label">Unit Price ($):</span>
                                                     </label>
-                                                    <input type="text" class="form-control " id="quantity" name="qty" style="margin-bottom: 8px;">
+                                                <input type="text" class="form-control " id="unit_price" name="unit_price" style="margin-bottom: 8px;">
                                                 </div>
-                                               
-
 
                                             </div>
                                         </div>
 
-                                        {{-- <div >
-                                            <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
 
-                                              <span   class="bs-stepper-label">Borrow ID:  {{ $borrow->borrow_id }}</span>
-
-                                            </button>
-                                            <input type="text" class="form-control ml-2" id="new_data" name="new_data" placeholder="Enter new data">
-
-
-                                         </div>
-
-
-                                        </div> --}}
                                     </div>
 
                                 </div>
@@ -201,30 +179,25 @@
 
                       <th>Book Title</th>
                       <th>Shelves</th>
-                      <th>Borrow Date</th>
-                      <th>return</th>
-                      <th>Action</th>
+                      <th>Qty</th>
+                      <th>Unit Price</th>
+                      <th>Rememnig</th>
                     </tr>
                     </thead>
-                    {{-- <tbody>
-                        @foreach ($borrows as $br )
+
+                    <tbody>
+
+                        @foreach($borrowDetails as $detail)
                         <tr>
+                            <td>{{ $detail->bookname }}</td>
+                            <td>{{ $detail->shelfname }}</td>
+                            <td>{{ $detail->qty }}</td>
+                            <td>${{ $detail->unit_price }}</td>
+                            <td>0</td>
 
-                            <td>{{ $br->bookname }}</td>
-                            <td>{{ $br->shelfname}}</td>
-                            <td>{{ $br->borrow_date }}</td>
-                            <td>{{ $br->return_date }}</td>
-
-
-                            <td>
-                                <a href="{{ route('return.edit',$br->borrow_id) }}" onclick="return confirm('Would you like to returned?')">
-                                    <i class="fa-solid fa-share" style="color: #494a4b;"></i>
-                                </a>
-
-                            </td>
                         </tr>
                         @endforeach
-                    </tbody> --}}
+                    </tbody>
 
                   </table>
                 </div>
@@ -241,12 +214,43 @@
 </div>
 
 @endsection
-@section('js')
 
-<script src="{{ asset('chosen/chosen.jquery.min.js') }}"></script>
+@section('js')
+@section('js')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#book_id').change(function() {
+            var bookId = $(this).val();
+            if (bookId) {
+                $.ajax({
+                    url: '{{ route('books.details', '') }}/' + bookId,
+                    method: 'GET',
+                    success: function(data) {
+                        if (data.unit_price !== undefined) {
+                            $('#unit_price').val(data.unit_price);
+                        } else {
+                            $('#unit_price').val('');
+                        }
+                    },
+                    error: function() {
+                        $('#unit_price').val('');
+                        alert('Failed to fetch book details.');
+                    }
+                });
+            } else {
+                $('#unit_price').val('');
+            }
+        });
+    });
+</script>
+@endsection
+
+
+{{-- <script src="{{ asset('chosen/chosen.jquery.min.js') }}"></script>
 <script>
     $(document).ready(function(){
         $('.chosen-select').chosen();
     });
 </script>
-@endsection
+@endsection --}}
