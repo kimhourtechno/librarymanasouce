@@ -30,7 +30,7 @@
             <div class="row w-100">
                 <!-- Logo Section -->
                 <div class="col-12 text-center">
-                    <img class="rounded mx-auto d-block" style="height: 68px;" src="{{ asset('images/logo_school.jpg') }}" alt="School Logo">
+                    <img class="rounded mx-auto d-block" style="height: 68px;" src="{{ asset('dist/img/SAIS_Logo.png') }}" alt="School Logo">
                 </div>
                 <!-- Title Section -->
                 <div class="col-12 text-center mt-2">

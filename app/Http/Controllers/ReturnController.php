@@ -8,11 +8,55 @@ use Carbon\Carbon;
 use App\Models\Book;
 use App\Models\Borrow;
 use App\Models\BorrowDetail;
+use App\Models\ReturnBookDetail;
+use App\Models\ReturnBook;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 class ReturnController extends Controller
 {
+    // ReturnBookController.php
+
+    public function save(Request $request)
+    {
+        
+    }
+
+
     public function returnbook($student_id, $borrow_id){
+
+        $returnBooks = ReturnBook::join('returnbookdetails', 'returnbooks.id', '=', 'returnbookdetails.returnbook_id')
+        ->join('books', 'returnbookdetails.book_id', '=', 'books.id')
+        ->select(
+            'returnbooks.borrow_id',
+            'returnbookdetails.book_id',
+            'books.bookname as book_name',
+            'returnbooks.return_date',   // Include return_date field
+            'returnbookdetails.qty_return as qty_return',
+            'returnbookdetails.totalprice as total_price'  // Include totalprice field
+
+        )
+        ->where('returnbooks.borrow_id', $borrow_id)  // Filter by borrow_id
+        ->get();
+
+        // $returnBooks = ReturnBook::join('returnbookdetails', 'returnbooks.id', '=', 'returnbookdetails.returnbook_id')
+        // ->join('books', 'returnbookdetails.book_id', '=', 'books.id')
+        // ->select(
+
+        //     'returnbookdetails.book_id',
+        //          'books.bookname as book_name',
+        //          DB::raw('SUM(returnbookdetails.qty_return) as total_qty_return'))
+        // ->where('returnbooks.borrow_id', $borrow_id)  // Filter by borrow_id
+        // ->groupBy('returnbookdetails.book_id', 'books.bookname')
+        // ->get();
+        // $returnBookDetails = ReturnBookDetail::join('books', 'returnbookdetails.book_id', '=', 'books.id')
+        // ->select('returnbookdetails.returnbook_id',
+        //
+
+        //   'returnbookdetails.qty_return')
+        // ->get();
+
+
             // Find the borrow record using the borrow_id
             $borrow = Borrow::find($borrow_id);
 
@@ -25,20 +69,18 @@ class ReturnController extends Controller
             // Retrieve all books associated with the borrow_id
             $books = Book::whereIn('id', $bookIds)->get();
             // Calculate overdue days
-            // Calculate overdue days
-        // Calculate overdue days
-    $currentDate = Carbon::now();
-    $returnDate = $borrow->return_date ? Carbon::parse($borrow->return_date) : $currentDate;
+                    // Calculate overdue days
+            $currentDate = Carbon::now();
+            $returnDate = $borrow->return_date ? Carbon::parse($borrow->return_date) : $currentDate;
 
-    // Calculate overdue days only if returnDate is in the past
-    if ($returnDate->lessThan($currentDate)) {
-        $overdueDays = $currentDate->diffInDays($returnDate);
-    } else {
-        $overdueDays = 0;
-    }
+            // Calculate overdue days only if returnDate is in the past
+            if ($returnDate->lessThan($currentDate)) {
+                $overdueDays = $currentDate->diffInDays($returnDate);
+            } else {
+                $overdueDays = 0;
+            }
 
-        return view('returns.returnbook', compact('student', 'borrow', 'books', 'overdueDays'));
-
+                return view('returns.returnbook', compact('student', 'borrow', 'books', 'overdueDays', 'returnBooks'));
         }
 
     public function fetchBookDetails(Request $request)
@@ -86,13 +128,7 @@ class ReturnController extends Controller
         return redirect()->back()->with('success', 'Book returned and availability updated.');
     }
 
-        // $data['borrows'] = Borrow::where('borrow_id',$id)
-        // ->update([
-        //     'action' => 0,
-        //     'due_date' => Carbon::now(),
-        // ]);
 
-        // return redirect()->back()->with('error', 'Book returned record.');
 
 
 }

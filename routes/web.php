@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ReturnBrokenController;
 
 use App\Http\Controllers\BorrowDetailController;
 use App\Http\Controllers\ReturnController;
@@ -52,29 +53,36 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/student', StudentController::class)->except(['destroy','show']);
     Route::get('/student/delete/{id}', [StudentController::class, 'delete'])->name('student.delete');
 });
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/membership','App\Http\Controllers\MembershipController@addmember');
 
     ///Dash Board
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard.view');
+    //return broken
+    Route::get('/returnbroken/{student}/{borrow}', [ReturnBrokenController::class, 'createbroken'])->name('returnbroken.show');
+    Route::post('/returnbroken/store', [ReturnBrokenController::class, 'store'])->name('returnbroken.store');
 
     //return
+
     Route::resource('/return','App\Http\Controllers\ReturnController')->except(['destroy']);
+    Route::post('/return-book', [ReturnController::class, 'save'])->name('return.save');
+
     Route::get('/return/delete/{id}','App\Http\Controllers\StudentController@delete')->name('return.delete');
     Route::get('/returnbook/{student_id}/{borrow_id}', [ReturnController::class, 'returnbook'])->name('returnbook.return');
     Route::get('/books/details/{id}', [BookController::class, 'getBookDetails'])->name('books.details');
 // Add this route in your web.php
-Route::get('/fetch-book-details', [ReturnController::class, 'fetchBookDetails']);    //borrow
+    Route::get('/fetch-book-details', [ReturnController::class, 'fetchBookDetails']);    //borrow
     Route::post('/borrow/add', [BorrowController::class, 'add'])->name('borrow.add');
     Route::resource('/borrow', 'App\Http\Controllers\BorrowController')->except('edit');
     Route::get('/borrow/edit/{id}/{borrow_id}', [BorrowController::class, 'edit'])->name('borrow.edit');
 
 
-Route::post('/borrowdetail/store', [BorrowDetailController::class, 'store'])->name('borrowdetail.store');
+    Route::post('/borrowdetail/store', [BorrowDetailController::class, 'store'])->name('borrowdetail.store');
 
 
     Route::resource('/book', BookController::class)->except(['destroy','show']);
+    Route::get('/book/delete{book}', [BookController::class, 'delete'])->name('book.delete');
+
     Route::get('/book/search', [BookController::class, 'search'])->name('book.search');
     Route::resource('/author', AuthorController::class);
 
@@ -92,7 +100,6 @@ Route::post('/borrowdetail/store', [BorrowDetailController::class, 'store'])->na
 //
 
 
-Route::get('/homemenu', 'App\Http\Controllers\HomemenuController@index');
 
 
 

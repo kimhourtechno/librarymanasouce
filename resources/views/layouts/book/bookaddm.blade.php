@@ -107,125 +107,81 @@
 
           <!-- =======Table====== -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              {{-- <i class="nav-icon fas fa-table"></i> --}}
-              <i class="fa fa-graduation-cap"></i>
+            <a href="{{ route('dashboard.view')}}" class="nav-link ">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+                Dashboard
 
-              <p>
-                Student
-                <i class="fas fa-angle-left right"></i>
-
-              </p>
+            </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('student.create') }}" class="nav-link">
-                  {{-- <i class="far fa-circle nav-icon"></i> --}}
-                  {{-- <i class="fa fa-address-card"></i> --}}
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Student Register</p>
-                </a>
-              </li>
 
-              <li class="nav-item">
-                    <a href="{{ url('student') }}" class="nav-link">
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Student List</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          {{-- =======Table1===== --}}
-          {{-- <i class="fa-sharp fa-solid fa-books-medical"></i> --}}
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+        </li>
+      <li class="nav-item">
+        <a href="{{ url('student') }}" class="nav-link">
+            <i class="fa fa-graduation-cap"></i>
+          <p>
+            Student
+
+          </p>
+        </a>
+
+      </li>
+
+          <li class="nav-item menu-open ">
+            <a href="{{ url('book') }}" class="nav-link active">
               <i class="fa fa-solid fa-book"></i>
               <p>
                 book
-                <i class="fas fa-angle-left right"></i>
+
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('book/create') }}" class="nav-link active">
-                  {{-- <i class="far fa-circle nav-icon"></i> --}}
-                  {{-- <i class="fa fa-address-card"></i> --}}
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Add book</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ url('book') }}" class="nav-link">
-                    {{-- <i class="far fa-circle nav-icon"></i> --}}
-                    {{-- <i class="fa fa-address-card"></i> --}}
-                    <i class="far fa-solid fa-folder"></i>
-
-                    <p>List Book</p>
-                  </a>
-                </li>
-              </ul>
           </li>
 
-          {{-- ==Borrow and returned=== --}}
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item ">
+            <a href="{{ url('membership') }}" class="nav-link ">
                 <i class="fa-solid fa-retweet"></i>
               <p>
-                Borrow and Return
-                <i class="fas fa-angle-left right"></i>
+                Borrower
+
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('membership') }}" class="nav-link">
-                  {{-- <i class="far fa-circle nav-icon"></i> --}}
-                  {{-- <i class="fa fa-address-card"></i> --}}
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Member</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('return.index') }}" class="nav-link">
-                    {{-- <i class="far fa-circle nav-icon"></i> --}}
-                    {{-- <i class="fa fa-address-card"></i> --}}
-                    <i class="far fa-solid fa-folder"></i>
-                    <p>Story Return</p>
-                  </a>
-                </li>
-              </ul>
+
           </li>
-           {{-- ==============User========= --}}
-         <li class="nav-item">
+
+
+        <!-- resources/views/layouts/nav.blade.php -->
+@php
+$user = Auth::user(); // Get the currently authenticated user
+@endphp
+
+<li class="nav-item">
+<a href="#" class="nav-link">
+    <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
+    <p>
+        User
+        <i class="fas fa-angle-left right"></i>
+    </p>
+</a>
+@if($user && $user->role !== 'user') <!-- Check if user is logged in and has a role other than 'user' -->
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
-              <p>
-                User
-                <i class="fas fa-angle-left right"></i>
-              </p>
+                <i class="far fa-solid fa-folder"></i>
+                <p>Create User</p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('user.create') }}" class="nav-link">
-
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Create User</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('user.index') }}" class="nav-link">
-
-                    <i class="far fa-solid fa-folder"></i>
-                    <p>List User</p>
-                  </a>
-                </li>
-              </ul>
         </li>
+    </ul>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{ route('user.index') }}" class="nav-link">
+                <i class="far fa-solid fa-folder"></i>
+                <p>List User</p>
+            </a>
+        </li>
+    </ul>
+@endif
+
+</li>
 
 
         </ul>
@@ -240,10 +196,7 @@
   @yield('bookaddly')
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 </strong> All rights reserved.
+
   </footer>
 
   <!-- Control Sidebar -->

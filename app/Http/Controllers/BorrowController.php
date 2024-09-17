@@ -42,11 +42,12 @@ class BorrowController extends Controller
     {
         $borrowDetails = BorrowDetail::where('borrow_id', $borrow_id)
                     ->join('books', 'borrowdetails.book_id', '=', 'books.id')
-                    ->join('shelves', 'books.shelf_id', '=', 'shelves.shelf_id')
+                    // ->join('shelves', 'books.shelf_id', '=', 'shelves.shelf_id')
                     ->select(
                         'borrowdetails.*',
                         'books.bookname as bookname',
-                        'shelf_name as shelfname'
+                        'books.shelve_name as shelfname'
+                        // 'shelf_name as shelfname'
                         )
                     ->get();
         $book = Book::all();
@@ -89,59 +90,6 @@ class BorrowController extends Controller
 
 
     }
-
-    // public function store(Request $r){
-    //     $messages = [
-    //         'book_id.required' => 'The book is required.',
-    //         'return_date.required' => 'The return date is required.',
-    //     ];
-
-    //     $r->validate([
-    //         'book_id' => 'required',
-    //         'return_date' => 'required|date',
-    //         'student_id' => 'required',
-    //     ], $messages);
-
-    //     $book = Book::find($r->book_id);
-
-    //     // Check if the book exists
-    //     if (!$book) {
-    //         return redirect()->back()->with('error', 'The book does not exist.');
-    //     }
-
-    //     // Check if the book is available for borrowing
-    //     if ($book->available <=0) {
-    //         return redirect()->back()->with('checkbook', 'This book is currently unavailable.');
-    //     }
-
-    //     // Check if the book is currently borrowed
-    //     $isBorrowed = Borrow::where('book_id', $r->book_id)
-    //     ->where('user_id',$r->student_id)
-    //     ->where('action', 1)
-    //     ->exists();
-
-    //     if ($isBorrowed) {
-    //         return redirect()->back()->with('error', 'This book is already borrowed.');
-    //     }
-    //     $borrow = new Borrow();
-    //     $borrow->user_id = $r->student_id;
-    //     $borrow->book_id = $r->book_id;
-    //     $borrow->return_date = $r->return_date;
-
-    //     if ($borrow->save()) {
-    //         $book->available -= 1;
-    //         $book->save();
-    //         return redirect()->back()->with('success', 'Book borrowed successfully.');
-    //     } else {
-    //         return redirect()->back()->with('error', 'Failed to borrow book.');
-    //     }
-
-
-
-
-
-
-    // }
 
 
 }

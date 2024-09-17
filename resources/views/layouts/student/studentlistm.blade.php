@@ -91,86 +91,83 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-               <li class="nav-item">
-                <a href="{{ route('dashboard.view')}}" class="nav-link">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                    Dashboard
 
-                </p>
-                </a>
+         <li class="nav-item">
+            <a href="{{ route('dashboard.view')}}" class="nav-link ">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+                Dashboard
 
-            </li>
-                 <!-- =======Table====== -->
-            <li class="nav-item">
-                <a href="{{ url('#') }}" class="nav-link ">
-                    <i class="fa fa-graduation-cap"></i>
-                <p>
-                    Dashboard
+            </p>
+            </a>
 
-                </p>
-                </a>
+        </li>
+      <li class="nav-item menu-open" >
+        <a href="{{ url('student') }}" class="nav-link active">
+            <i class="fa fa-graduation-cap"></i>
+          <p>
+            Student
 
-            </li>
-          <li class="nav-item">
-            <a href="{{ url('student') }}" class="nav-link active">
-                <i class="fa fa-graduation-cap"></i>
+          </p>
+        </a>
+
+      </li>
+
+          <li class="nav-item ">
+            <a href="{{ url('book') }}" class="nav-link ">
+              <i class="fa fa-solid fa-book"></i>
               <p>
-                Student
+                book
 
               </p>
             </a>
-
           </li>
-          <li class="nav-item">
-            <a href="{{ url('book') }}" class="nav-link ">
-                <i class="fa fa-solid fa-book"></i>
-                <p>
-                  book
 
-                </p>
-              </a>
-
-          </li>
-          {{-- ==borrow and return=== --}}
           <li class="nav-item">
             <a href="{{ url('membership') }}" class="nav-link ">
                 <i class="fa-solid fa-retweet"></i>
               <p>
                 Borrower
+
               </p>
             </a>
 
           </li>
-         {{-- ==============User========= --}}
-         <li class="nav-item">
+
+
+        <!-- resources/views/layouts/nav.blade.php -->
+@php
+$user = Auth::user(); // Get the currently authenticated user
+@endphp
+
+<li class="nav-item">
+<a href="#" class="nav-link">
+    <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
+    <p>
+        User
+        <i class="fas fa-angle-left right"></i>
+    </p>
+</a>
+@if($user && $user->role !== 'user') <!-- Check if user is logged in and has a role other than 'user' -->
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
-              <p>
-                User
-                <i class="fas fa-angle-left right"></i>
-              </p>
+                <i class="far fa-solid fa-folder"></i>
+                <p>Create User</p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('user.create') }}" class="nav-link">
-
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Create User</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('user.index') }}" class="nav-link">
-
-                    <i class="far fa-solid fa-folder"></i>
-                    <p>List User</p>
-                  </a>
-                </li>
-              </ul>
         </li>
+    </ul>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{ route('user.index') }}" class="nav-link">
+                <i class="far fa-solid fa-folder"></i>
+                <p>List User</p>
+            </a>
+        </li>
+    </ul>
+@endif
 
+</li>
     </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -184,7 +181,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
- 
+
   </footer>
 
   <!-- Control Sidebar -->

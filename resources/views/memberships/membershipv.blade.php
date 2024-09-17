@@ -18,7 +18,6 @@
                             </a>
                             <br>
                         </div>
-
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -50,18 +49,11 @@
                                                 <i class="fas fa-undo" style="color: rgb(27, 113, 27);"></i>
                                             </a>
 
-                                            {{-- <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-lg" data-student-id="{{ $student->id }}" data-borrow-id="{{ $student->borrow_id }}">
-                                                <i class="fas fa-undo" style="color: rgb(27, 113, 27);"></i>
-                                            </a> --}}
-
-                                            {{-- <a href="{{ route('#',[$student->id, $student->borrow_id]) }}" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-lg" data-student-id="{{ $student->id }}" data-borrow-id="{{ $student->borrow_id }}">
-                                                <i class="fas fa-undo" style="color: rgb(27, 113, 27);"></i>
-                                            </a> --}}
-
-
-                                            <a class="btn btn-danger btn-sm" title="Return Broken">
+                                            <a href="{{ route('returnbroken.show', [$student->id, $student->borrow_id]) }}" class="btn btn-danger btn-sm" title="Return Broken">
                                                 <i class="fas fa-exclamation-triangle" style="color: rgb(118, 73, 73);"></i>
                                             </a>
+
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -93,7 +85,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Modal for Returning Book -->
                     <div class="modal fade" id="modal-lg">
                         <div class="modal-dialog modal-lg">

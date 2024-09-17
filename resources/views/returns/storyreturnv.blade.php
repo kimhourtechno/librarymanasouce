@@ -31,7 +31,6 @@
                 <div class="btn-group btn-group-sm">
                     <a class="btn btn-block bg-gradient-primary"  onclick="printPage()" href="#" style="padding: 4px"><span class="sp-font">Print</span></a>
                 </div>
-
                 </div>
              </div>
             <!-- /.card-header -->

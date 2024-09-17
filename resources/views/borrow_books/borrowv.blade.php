@@ -140,7 +140,7 @@
                                                     <label class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
                                                         <span class="bs-stepper-label">Unit Price ($):</span>
                                                     </label>
-                                                <input type="text" class="form-control " id="unit_price" name="unit_price" style="margin-bottom: 8px;">
+                                                <input type="text" class="form-control " id="unit_price" name="unit_price" style="margin-bottom: 8px;" disabled>
                                                 </div>
 
                                             </div>
@@ -169,8 +169,14 @@
           <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Book Return</h3>
-                </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <h3 class="card-title mb-0">Book Return</h3>
+                      <button type="button" class="btn btn-default" onclick="window.print();"><i class="fas fa-print"></i> Print</button>
+
+                      {{-- <button id="togglePrintArea" class="btn btn-primary ml-auto">Show Print Area</button> --}}
+                    </div>
+                  </div>
+
                 <!-- /.card-header -->
                 <div class="card-body">
                   <table id="example2" class="table table-hover">
@@ -186,7 +192,6 @@
                     </thead>
 
                     <tbody>
-
                         @foreach($borrowDetails as $detail)
                         <tr>
                             <td>{{ $detail->bookname }}</td>
@@ -210,12 +215,145 @@
       </div>
       <!-- /.container-fluid -->
     </section>
+
+<section class="content print-area"> <!-- Add the 'print-area' class here -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+
+                <!-- Main content -->
+                <div class="invoice p-3 mb-3">
+                    <!-- title row -->
+                    <div class="brand-link">
+                        <div class="logo-container">
+                            <img src="{{ asset('dist/img/logo_school.jpg') }}" style="opacity: .8; width: 78px; height: 78px;">
+                        </div>
+                        <div class="info" style="font-size: 14.5px">
+                            <p style="color: black;">
+                                វិទ្យាល័យ អន្តរជាតិ អែស អេ អាយ (សឹង្ហបុរី)<br>
+                                Singapore Amicus International School
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="text-container">
+                        <div class="text-borrow">
+                            <u>កិច្ចសន្យាខ្ចីសៀវភៅ</u>
+                        </div>
+                    </div>
+                    <div class="row invoice-info">
+                        <div class="col-sm-5 invoice-col">
+                            <address>
+                                <br>
+                                <p class="font-khmer">ខ្ញុំបាទ/នាងខ្ញុំឈ្មោះ : {{ $student->name }}</p>
+                                <p class="font-khmer">លេខប័ណ្ណសម្គាល់ខ្លួន :  {{ sprintf('%06d', $student->id) }}</p>
+                                <p class="font-khmer">លេខទូរសព្ទ : {{ $student->mother_phone }}</p>
+                                <p class="font-khmer">អ៉ីម៉ែល : {{ $student->email }}</p>
+                                <p class="font-khmer">ភូមិ :____________________________ </p>
+                                <p class="font-khmer">សង្កាត់/ឃុំ :_______________________ </p>
+                                <p class="font-khmer">ក្រុង/ស្រុក ::______________________ </p>
+                            </address>
+                        </div>
+                        <div class="col-sm-3 invoice-col">
+                            <address>
+                                <br>
+                                <p class="font-khmer">ថ្ងៃខ្ចី : {{ $borrow->due_date }}</p>
+                                <p class="font-khmer">ជួសជុលដល់ថ្ងៃទី : {{ $borrow->return_date }}</p>
+                                <p class="font-khmer">ប្រាក់ពិន័យ : ______________</p>
+
+                            </address>
+                        </div>
+                        <div class="col-sm-3 invoice-col" style="margin-left: 80px;">
+                            <address>
+                                <br>
+                                <p>
+                                     ឈ្មោះបណ្ណារក្ស : {{ $borrow->librarian->name }}
+                                </p>
+                                <p class="font-khmer">អ៉ីម៉ែល :{{ $borrow->librarian->email }}
+                                </p>
+                                <p class="font-khmer">លេខទូរសព្ទ : {{ $borrow->librarian->phone }}</p>
+
+                            </address>
+                        </div>
+                    </div>
+
+                    <!-- Table row -->
+                    <div class="row">
+                        <div class="col-12 table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>N0</th>
+                                        <th>Book Name</th>
+
+                                        <th>Qty</th>
+
+                                        <th>Unit Price</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $counter = 1; @endphp
+                                    @foreach($borrowDetails as $detail)
+                                    <tr>
+                                        <td>{{ $counter++ }}</td> <!-- Display row number and increment counter -->
+                                        <td>{{ $detail->bookname }}</td>
+                                        <td>{{ $detail->qty }}</td>
+                                        <td>${{ $detail->unit_price }}</td>
+                                    </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+
+                        <div class="col-6">
+                            <p class="font-khmer">ខេត្ត ព្រះសីហនុ, ថ្ងៃទី______ខែ__________ឆ្នាំ_________  </p>
+                            <p class="font-khmer">ហត្ថលេខា និង ឈ្មោះ </p>
+
+                            <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                                ទីតាំងក្រុងព្រះសីហនុ៖ ភូមិ៥ សង្កាត់លេខ៤ ក្រុងព្រះសីហនុ ខេត្តព្រះសីហនុ          ទីតាំងក្រុងកំពត៖ ខាងជើងផ្សារសាមគ្គី ជាប់អគារមង្គលការមិត្តភាព សង្កាត់កំពង់បាយ ក្រុងកំពត ខេត្តកំពត
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <div class="table-responsive">
+                                <table class="table">
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- this row will not appear when printing -->
+                    <div class="row no-print">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-default" onclick="window.print();"><i class="fas fa-print"></i> Print</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
     <!-- /.content -->
 </div>
-
 @endsection
 
+
 @section('js')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+@endsection
+
 @section('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -247,10 +385,3 @@
 @endsection
 
 
-{{-- <script src="{{ asset('chosen/chosen.jquery.min.js') }}"></script>
-<script>
-    $(document).ready(function(){
-        $('.chosen-select').chosen();
-    });
-</script>
-@endsection --}}

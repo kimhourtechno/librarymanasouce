@@ -71,7 +71,7 @@
                   <th>Date Post</th>
                   <th>Shelves</th>
                   <th>Available	</th>
-                  <th>Price</th>
+                  <th>Unit Price</th>
                   <th>Action</th>
 
                 </tr>
@@ -93,7 +93,7 @@
 
                         <td>
                             <a href="{{ route('book.edit',$b->id) }}" style="width:5px"> <i class="fa-solid fa-pen-to-square" style="color: #a2a5a9;"></i></a>
-                            <a href="#"><i class="fa-solid fa-trash" style="color: #9a9b9e;"></i></a>
+                            <a href="{{ route('book.delete',$b->id) }}" onclick="return confirm('Would you like to delete Book?')"><i class="fa-solid fa-trash" style="color: #9a9b9e;"></i></a>
                         </td>
 
 

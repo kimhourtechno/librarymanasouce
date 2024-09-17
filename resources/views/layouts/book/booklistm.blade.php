@@ -114,7 +114,6 @@
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
-
                 </p>
                 </a>
 
@@ -151,66 +150,41 @@
 
           </li>
 
-          {{-- ==Borrow and returned=== --}}
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-retweet"></i>
-              <p>
-                Borrow and Return
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('membership') }}" class="nav-link">
-                  {{-- <i class="far fa-circle nav-icon"></i> --}}
-                  {{-- <i class="fa fa-address-card"></i> --}}
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Member</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('return.index') }}" class="nav-link">
-                    {{-- <i class="far fa-circle nav-icon"></i> --}}
-                    {{-- <i class="fa fa-address-card"></i> --}}
-                    <i class="far fa-solid fa-folder"></i>
-                    <p>Story Return</p>
-                  </a>
-                </li>
-              </ul>
-          </li>
+
            {{-- ==============User========= --}}
-         <li class="nav-item">
+                 <!-- resources/views/layouts/nav.blade.php -->
+@php
+$user = Auth::user(); // Get the currently authenticated user
+@endphp
+
+<li class="nav-item">
+<a href="#" class="nav-link">
+    <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
+    <p>
+        User
+        <i class="fas fa-angle-left right"></i>
+    </p>
+</a>
+@if($user && $user->role !== 'user') <!-- Check if user is logged in and has a role other than 'user' -->
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
-              <p>
-                User
-                <i class="fas fa-angle-left right"></i>
-              </p>
+                <i class="far fa-solid fa-folder"></i>
+                <p>Create User</p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('user.create') }}" class="nav-link">
-
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Create User</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('user.index') }}" class="nav-link">
-
-                    <i class="far fa-solid fa-folder"></i>
-                    <p>List User</p>
-                  </a>
-                </li>
-              </ul>
         </li>
+    </ul>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{ route('user.index') }}" class="nav-link">
+                <i class="far fa-solid fa-folder"></i>
+                <p>List User</p>
+            </a>
+        </li>
+    </ul>
+@endif
 
-
+</li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

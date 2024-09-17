@@ -9,7 +9,13 @@
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
           <div class="card-header custom-card-header " style="background: #fec0c0;">
-            <h3 class="card-title">Borrow Application</h3>
+            <h3 class="card-title" style="text-align: center; Font">
+                    <span>                            Borrow Application
+                    </span>
+                <br>
+                <span class="subtitle" style="display: block; margin-top: 5px;">EDITE</span>
+            </h3>
+
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
               </button>

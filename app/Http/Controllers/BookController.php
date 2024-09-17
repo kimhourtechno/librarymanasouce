@@ -8,6 +8,18 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
+    public function delete($id){
+        $book = Book::findOrFail($id);
+
+        // Update the action field to 0
+        $book->action = 0;
+        $book->save();
+
+        // Redirect or return response
+        return redirect()->route('book.index')->with('success', 'Book status delete successfully.');
+
+
+    }
     public function getBookDetails($id)
     {
         $book = Book::find($id);
@@ -61,12 +73,12 @@ class BookController extends Controller
 
         $data['books'] = Book::join('book_categorys', 'books.book_category_id', '=', 'book_categorys.book_category_id')
         ->join('authors', 'books.author_id', '=', 'authors.author_id')
-        ->join('shelves','books.shelf_id','=','shelves.shelf_id')
-      ->select(
+        ->where('books.action', 1) // Add the condition here
+         ->select(
         'books.*',
+
         'book_categorys.book_category_name as bookcategory',
         'authors.author_name as gname',
-        'shelves.shelf_name as shelfname'
     )
     ->get();
 

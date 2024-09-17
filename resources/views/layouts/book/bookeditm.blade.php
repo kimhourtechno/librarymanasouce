@@ -7,6 +7,8 @@
 
   {{-- <! --------ICON------> --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="{{ asset('bootstrap/style.css') }}" rel="stylesheet">
+
 
 
   <!-- Google Font: Source Sans Pro -->
@@ -42,15 +44,38 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
-      </li>
+      <div class="Name-school">
+        <h2>Library System Singapore Amicus International School</h2>
+     </div>
+
 
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown user-menu">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                  <span class="d-none d-md-inline">{{ @Auth::user()->name }}</span>
+                </a>
+           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('logout') }}" role="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+              <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+          </li>
+
+        </ul>
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -58,11 +83,16 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-     <div class="brand-link">
-      <img src="{{ asset('images/logoASA1.jpg') }}"  class="brand-image img-circle elevation-3" style="opacity: .8, with: 22px">
-      <span class="brand-text font-weight-light">S.A.I </span>
-    </div>
-
+    <div class="brand-link">
+        <img src="../../dist/img/logo_school.jpg"  class="brand-image img-circle elevation-3" style="margin-right:21px;opacity: .8, with: 22px, ">
+        <span>
+            <div class="info">
+                <p>វិទ្យាល័យ អន្តរជាតិ អែស អេ អាយ (សឹង្ហបុរី)<br>
+                Singapore Amicus Internaional School
+                </p>
+               </div>
+        </span>
+      </div>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -73,8 +103,8 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-               <li class="nav-item ">
-                <a href="{{ route('dashboard.view')}}" class="nav-link">
+               <li class="nav-item">
+                <a href="{{ route('dashboard.view')}}" class="nav-link ">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
@@ -83,100 +113,72 @@
                 </a>
 
             </li>
-          <!-- =======Table====== -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              {{-- <i class="nav-icon fas fa-table"></i> --}}
-              <i class="fa fa-graduation-cap"></i>
-
+            <a href="{{ url('student') }}" class="nav-link">
+                <i class="fa fa-graduation-cap"></i>
               <p>
                 Student
-                <i class="fas fa-angle-left right"></i>
 
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('student.create') }}" class="nav-link">
-                  {{-- <i class="far fa-circle nav-icon"></i> --}}
-                  {{-- <i class="fa fa-address-card"></i> --}}
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Student Register</p>
-                </a>
-              </li>
 
-              <li class="nav-item">
-                    <a href="{{ url('student') }}" class="nav-link">
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Student List</p>
-                </a>
-              </li>
-            </ul>
           </li>
-          {{-- =======Table1===== --}}
-          {{-- <i class="fa-sharp fa-solid fa-books-medical"></i> --}}
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="fa fa-solid fa-book"></i>
-              <p>
-                book
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('book/create') }}" class="nav-link active">
-                  {{-- <i class="far fa-circle nav-icon"></i> --}}
-                  {{-- <i class="fa fa-address-card"></i> --}}
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Add book</p>
+
+              <li class="nav-item menu-open ">
+                <a href="{{ url('book') }}" class="nav-link active">
+                  <i class="fa fa-solid fa-book"></i>
+                  <p>
+                    book
+
+                  </p>
                 </a>
               </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ url('book') }}" class="nav-link">
-                    {{-- <i class="far fa-circle nav-icon"></i> --}}
-                    {{-- <i class="fa fa-address-card"></i> --}}
+
+              <li class="nav-item ">
+                <a href="{{ url('membership') }}" class="nav-link ">
+                    <i class="fa-solid fa-retweet"></i>
+                  <p>
+                    Borrower
+
+                  </p>
+                </a>
+
+              </li>
+
+
+            <!-- resources/views/layouts/nav.blade.php -->
+    @php
+    $user = Auth::user(); // Get the currently authenticated user
+    @endphp
+
+    <li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
+        <p>
+            User
+            <i class="fas fa-angle-left right"></i>
+        </p>
+    </a>
+    @if($user && $user->role !== 'user') <!-- Check if user is logged in and has a role other than 'user' -->
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
                     <i class="far fa-solid fa-folder"></i>
-
-                    <p>List Book</p>
-                  </a>
-                </li>
-              </ul>
-          </li>
-
-          {{-- ==Borrow and returned=== --}}
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-retweet"></i>
-              <p>
-                Borrow and Return
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('membership') }}" class="nav-link">
-                  {{-- <i class="far fa-circle nav-icon"></i> --}}
-                  {{-- <i class="fa fa-address-card"></i> --}}
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Member</p>
+                    <p>Create User</p>
                 </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('return.index') }}" class="nav-link">
-                    {{-- <i class="far fa-circle nav-icon"></i> --}}
-                    {{-- <i class="fa fa-address-card"></i> --}}
+            </li>
+        </ul>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('user.index') }}" class="nav-link">
                     <i class="far fa-solid fa-folder"></i>
-                    <p>Story Return</p>
-                  </a>
-                </li>
-              </ul>
-          </li>
+                    <p>List User</p>
+                </a>
+            </li>
+        </ul>
+    @endif
 
+    </li>
 
         </ul>
       </nav>
@@ -191,10 +193,7 @@
 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 </strong> All rights reserved.
+    
   </footer>
 
   <!-- Control Sidebar -->

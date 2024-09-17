@@ -59,7 +59,6 @@
         <div class="Name-school">
             <h2>Library System Singapore Amicus International School</h2>
          </div>
-
       </ul>
 
     <!-- Right navbar links -->
@@ -68,9 +67,8 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
               <span class="d-none d-md-inline">{{ @Auth::user()->name }}</span>
             </a>
+       </li>
 
-         </li>
-         
       <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}" role="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fa-solid fa-right-from-bracket"></i>
@@ -139,8 +137,6 @@
 
               </p>
             </a>
-
-
           </li>
 
           <li class="nav-item menu-open">
@@ -153,55 +149,42 @@
             </a>
 
           </li>
-          <li class="nav-item">
-            <a href="{{ route('return.index') }}" class="nav-link ">
-                <i class="fa-solid fa-retweet"></i>
-              <p>
-                Story Returned
-
-              </p>
-            </a>
-
-          </li>
 
 
+        <!-- resources/views/layouts/nav.blade.php -->
+@php
+$user = Auth::user(); // Get the currently authenticated user
+@endphp
+
+<li class="nav-item">
+<a href="#" class="nav-link">
+    <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
+    <p>
+        User
+        <i class="fas fa-angle-left right"></i>
+    </p>
+</a>
+@if($user && $user->role !== 'user') <!-- Check if user is logged in and has a role other than 'user' -->
+    <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
-              <p>
-                User
-                <i class="fas fa-angle-left right"></i>
-              </p>
+            <a href="{{ route('user.create') }}" class="nav-link">
+                <i class="far fa-solid fa-folder"></i>
+                <p>Create User</p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+        </li>
+    </ul>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{ route('user.index') }}" class="nav-link">
+                <i class="far fa-solid fa-folder"></i>
+                <p>List User</p>
+            </a>
+        </li>
+    </ul>
+@endif
 
-                  <i class="far fa-solid fa-folder"></i>
-                  <p>Create User</p>
-                </a>
-              </li>
-            </ul>
-            @can('isAdmin')
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{ route('user.index') }}" class="nav-link">
-                        <i class="far fa-solid fa-folder"></i>
-                        <p>List User</p>
-                    </a>
-                </li>
-            </ul>
-            @endcan
-            {{-- <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('user.index') }}" class="nav-link">
+</li>
 
-                    <i class="far fa-solid fa-folder"></i>
-                    <p>List User</p>
-                  </a>
-                </li>
-              </ul> --}}
-          </li>
 
     </nav>
       <!-- /.sidebar-menu -->

@@ -84,8 +84,7 @@
                 <div class="card">
 
                     <!-- /.card-header -->
-                    {{-- <div class="card-header"><h2>Return Book</h2></div> --}}
-                    <div class="card-header"><h2>Story Return</h2></div>
+                    <div class="card-header"><h2>Return Book</h2></div>
                     <div class="card-header">
                       <h3 class="card-title">The student returned the book to the library</h3>
 
@@ -107,6 +106,7 @@
                            <div class="btn-group btn-group-sm">
                             <a class="btn btn-custom-size bg-gradient-secondary" href="{{ route('search.thismonth') }}" style="padding: 4px"><span class="sp-font">This month</span></a>
                         </div>
+
                         </div>
                      </div>
                     <div class="card-body">
@@ -115,16 +115,12 @@
                                 <tr>
                                     <th>ID Borrow</th>
                                     <th>Book Name</th>
-                                    <th>Borrower</th>
-                                    <th>Quantity</th>
-                                    <th>Return Date</th>
-                                    <th>Unit Price</th>
-                                    <th>Total Price</th>
-
+                                    <th>Quantity Borrow</th>
+                                    <th> Due Return Date</th>
+                                    {{-- <th>Borrow By</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
-                             
 
                             </tbody>
                         </table>

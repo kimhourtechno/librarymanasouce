@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Borrow extends Model
 {
     use HasFactory;
+    public function librarian()
+{
+    return $this->belongsTo(User::class, 'librarian_id');
+}
     public $timestamps = false;
     protected $primaryKey = 'borrow_id';
     public $incrementing = true;
@@ -21,7 +25,7 @@ class Borrow extends Model
         // Add other fillable fields as needed
     ];
 
-    
+
 
 
 }

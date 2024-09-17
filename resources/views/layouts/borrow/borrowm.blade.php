@@ -8,6 +8,76 @@
 
   <link href="{{ asset('bootstrap/style.css') }}" rel="stylesheet">
 
+  <style>
+@font-face {
+    font-family: 'Khmer OS Muollight';
+    src: url('{{ asset('fonts/khmer-os-muollight.woff2') }}') format('woff2'),
+         url('{{ asset('fonts/khmer-os-muollight.woff') }}') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.text-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100%; /* Adjust based on your layout needs */
+    text-align: center; /* Center text inside the div */
+}
+
+.text-borrow {
+    font-family: 'Khmer OS Muollight', sans-serif;
+
+    font-weight: bold; /* Make text bold */
+    font-size: 18px; /* Adjust font size as needed */
+}
+
+    .print-area {
+    display: none;
+}
+
+@media print {
+    .print-area {
+        display: block;
+    }
+    .no-print {
+        display: none;
+    }
+    @media print {
+      /* Hide everything else */
+      body * {
+        visibility: hidden;
+      }
+       /* Hide the column from the screen */
+       .d-none {
+            display: none;
+        }
+
+        /* Ensure the hidden column is still visible in print */
+        @media print {
+            .d-none {
+                display: table-cell;
+            }
+        }
+
+      /* Show only the print-area */
+      .print-area, .print-area * {
+        visibility: visible;
+      }
+
+      /* Ensure the print area is on the page */
+      .print-area {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      /* Optional: Hide the print button in the print version */
+      .no-print {
+        display: none;
+      }
+    }
+  </style>
+
     {{-- =======link============ --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
@@ -193,10 +263,7 @@
 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+
   </footer>
 
   <!-- Control Sidebar -->

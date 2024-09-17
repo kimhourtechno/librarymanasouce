@@ -1,6 +1,6 @@
 @extends('layouts.masterpage')
 @section('content')
-<h3 class="fs-4 mb-3" style="border-bottom: 2px solid rgb(188, 186, 186);">Add Book</h3>
+<h3 class="fs-4 mb-3" style="border-bottom: 2px solid rgb(188, 186, 186);">Edite Book</h3>
     <form action="{{ url('book/update') }}" style="border=1 " method="POST">
         @csrf
         <input type="hidden" name="id" value="{{ $book->id }}">

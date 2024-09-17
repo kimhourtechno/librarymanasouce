@@ -90,7 +90,7 @@
                             <a href="{{ route('student.edit', $student->id) }}" >
                                 <i class="fa-solid fa-pen-to-square" style="color:#4962a3;"></i>
                             </a>
-                            <a href="{{ route('student.view', $student->id) }}" onclick="return confirm('Would you like to add a library member?')">
+                            <a href="{{ route('student.view', $student->id) }}" onclick="return confirm('Would you like to Delete Student or Borrower?')">
                                 <i class="fa-sharp fa-solid fa-plus" style="color: #40755e;"></i>
                             </a>
 
@@ -116,12 +116,12 @@
                          <a href="{{ route('student.edit',$s->id) }}" >
                             <i class="fa-solid fa-user-pen" style="color:#4962a3;"></i>
                          </a>
-                         <a href="{{ route('student.view',$s->id) }}"  onclick="return confirm('Would you like to add a library member?')">
+                         <a href="{{ route('student.view',$s->id) }}"  onclick="return confirm('Would you like to view information student?')">
                             <i class="fa-solid fa-eye" style="color:#40755e"></i>
                         </a>
-                        <a href="{{ route('student.delete',$s->id) }}"  onclick="return confirm('Would you like to add a library member?')">
-                            <i class="fa-solid fa-eye" style="color:#40755e"></i>
-                        </a>
+                        <a href="{{ route('student.delete',$s->id) }}"  onclick="return confirm('Would you like to delete student information?')">
+                            <i class="fa-solid fa-trash" style="color:#741010"></i>
+                         </a>
 
                      </td>
 
