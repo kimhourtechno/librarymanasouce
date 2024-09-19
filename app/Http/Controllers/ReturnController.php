@@ -19,7 +19,41 @@ class ReturnController extends Controller
 
     public function save(Request $request)
     {
+        $validated = $request->validate([
+            'book_id' => 'required|exists:books,id',
+            'qty' => 'required|integer|min:1',
+            'unit_price' => 'nullable|numeric|min:0',
+            'total_price' => 'nullable|numeric|min:0',
+            'notes' => 'nullable|string',
+        ]);
+
+        // Check if there is an existing ReturnBook record with the same borrow_id and today's date
+        $existingReturnBook = ReturnBook::where('borrow_id', $request->input('borrow_id'))
+                                        ->whereDate('return_date', now()->toDateString())
+                                        ->first();
+
+        if (!$existingReturnBook) {
+            // No existing record for the same borrow_id with today's date, so create a new ReturnBook record
+            $returnBook = new ReturnBook();
+            $returnBook->borrow_id = $request->input('borrow_id');
+            $returnBook->return_date = now(); // Set the return date to now
+            $returnBook->save();
+        } else {
+            // Use the existing ReturnBook record
+            $returnBook = $existingReturnBook;
+        }
         
+        // Save to returnbookdetails table
+        $returnBookDetail = new ReturnBookDetail();
+        $returnBookDetail->returnbook_id = $returnBook->id; // Foreign key reference to returnbooks table
+        $returnBookDetail->book_id = $request->input('book_id');
+        $returnBookDetail->qty_return = $request->input('qty');
+        $returnBookDetail->totalprice = $request->input('total_price');
+        $returnBookDetail->note = $request->input('notes');
+        $returnBookDetail->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Book return recorded successfully!');
     }
 
 

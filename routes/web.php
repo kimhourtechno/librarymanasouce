@@ -17,6 +17,7 @@ use App\Http\Controllers\ReturnController;
 
 
 use App\Models\Author;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/membership','App\Http\Controllers\MembershipController@addmember');
 
     ///Dash Board
+    Route::get('/dashboardreturnbroken', [DashboardController::class, 'dashboardbroken'])->name('dashboard.returnbroken');
+
+    Route::get('/dashboardborrow', [DashboardController::class, 'dashboardborrow'])->name('dashboard.borrow');
+    // Route::get('/dashboard/borrow', [DashboardController::class, 'dashboardborrow'])->name('dashboard.borrow');
+
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard.view');
     //return broken
     Route::get('/returnbroken/{student}/{borrow}', [ReturnBrokenController::class, 'createbroken'])->name('returnbroken.show');
@@ -72,13 +78,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/books/details/{id}', [BookController::class, 'getBookDetails'])->name('books.details');
 // Add this route in your web.php
     Route::get('/fetch-book-details', [ReturnController::class, 'fetchBookDetails']);    //borrow
+    Route::get('/books/details/{id}', [BookController::class, 'details'])->name('books.details');
+
     Route::post('/borrow/add', [BorrowController::class, 'add'])->name('borrow.add');
     Route::resource('/borrow', 'App\Http\Controllers\BorrowController')->except('edit');
     Route::get('/borrow/edit/{id}/{borrow_id}', [BorrowController::class, 'edit'])->name('borrow.edit');
 
 
     Route::post('/borrowdetail/store', [BorrowDetailController::class, 'store'])->name('borrowdetail.store');
-
 
     Route::resource('/book', BookController::class)->except(['destroy','show']);
     Route::get('/book/delete{book}', [BookController::class, 'delete'])->name('book.delete');
@@ -98,8 +105,6 @@ Route::middleware(['auth'])->group(function () {
 
 //
 //
-
-
 
 
 

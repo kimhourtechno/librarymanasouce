@@ -58,20 +58,20 @@
                     <div class="icon">
                         <i class="fas fa-book-reader"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ route('dashboard.borrow') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div  class="small-box bg-secondary">
                     <div class="inner">
-                        <h3>{{ $borrowCount }}</h3>
-                        <p>Borrows</p>
+                        <h3>{{ $brokenReturnCount }}</h3>
+                        <p>Broken/Lost</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-cogs"></i> <!-- Icon for broken book details -->
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ route('dashboard.returnbroken') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -118,13 +118,23 @@
                                     <th>Borrower</th>
                                     <th>Quantity</th>
                                     <th>Return Date</th>
-                                    <th>Unit Price</th>
-                                    <th>Total Price</th>
+                                    <th>Borrow By</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                             
+                                @foreach($returnBooks as $returnBook)
+                                <tr>
+                                    <td>{{ $returnBook->borrow_id }}</td>
+                                    <td>{{ $returnBook->book_name }}</td>
+                                    <td>{{ $returnBook->student_name }}</td>
+                                    <td>{{ $returnBook->qty_return }}</td>
+
+                                    <td>{{ $returnBook->return_date }}</td>
+
+                                    <td>{{ $returnBook->librarian_name }}</td>
+                                </tr>
+                                @endforeach
 
                             </tbody>
                         </table>

@@ -18,7 +18,7 @@ class MembershipController extends Controller
         ->leftJoin('users', 'borrows.librarian_id', '=', 'users.id')
         ->where('students.action', 1) // Ensure that only students with action = 1 are included
         ->whereNotNull('borrows.borrow_id') // Only include students with a borrow_id
-        ->select('students.*', 'borrows.borrow_id', 'borrows.borrow_date', 'borrows.return_date', 'borrows.due_date', 'users.name as librarian_name')
+        ->select('students.*', 'borrows.borrow_id', 'borrows.borrow_date', 'borrows.return_date',  'users.name as librarian_name')
         ->get();
 
 

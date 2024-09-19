@@ -58,15 +58,15 @@
                     <div class="icon">
                         <i class="fas fa-book-reader"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ route('dashboard.borrow') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div  class="small-box bg-secondary">
                     <div class="inner">
-                        <h3>{{ $borrowCount }}</h3>
-                        <p>Borrows</p>
+                        <h3>{{ $brokenReturnCount }}</h3>
+                        <p>Broken/Lost</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-cogs"></i> <!-- Icon for broken book details -->
@@ -84,7 +84,8 @@
                 <div class="card">
 
                     <!-- /.card-header -->
-                    <div class="card-header"><h2>Return Book</h2></div>
+                    {{-- <div class="card-header"><h2>Return Book</h2></div> --}}
+                    <div class="card-header"><h2>Story Return</h2></div>
                     <div class="card-header">
                       <h3 class="card-title">The student returned the book to the library</h3>
 
@@ -106,7 +107,6 @@
                            <div class="btn-group btn-group-sm">
                             <a class="btn btn-custom-size bg-gradient-secondary" href="{{ route('search.thismonth') }}" style="padding: 4px"><span class="sp-font">This month</span></a>
                         </div>
-
                         </div>
                      </div>
                     <div class="card-body">
@@ -115,12 +115,31 @@
                                 <tr>
                                     <th>ID Borrow</th>
                                     <th>Book Name</th>
-                                    <th>Quantity Borrow</th>
-                                    <th> Due Return Date</th>
-                                    {{-- <th>Borrow By</th> --}}
+                                    <th>Borrower</th>
+                                    <th>Quantity</th>
+                                    <th>Return Date</th>
+                                    <th>Borrow Date</th>
+                                    <th>Unit Price</th>
+                                    <th>Borrow By</th>
+
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($borrows as $borrow)
+                                <tr>
+                                    <td>{{ $borrow->borrow_id }}</td>
+                                    <td>{{ $borrow->bookname}}</td>
+                                    <td>{{ $borrow->user_id }}</td>
+                                    <td>{{ $borrow->qty }}</td>
+
+                                    <td>{{ $borrow->return_date }}</td>
+                                    <td>{{ $borrow->borrow_date }}</td>
+                                    <td>{{ $borrow->unit_price }}</td>
+
+                                    <td>{{ $borrow->librarain }}</td>
+
+                                </tr>
+                                @endforeach
 
                             </tbody>
                         </table>

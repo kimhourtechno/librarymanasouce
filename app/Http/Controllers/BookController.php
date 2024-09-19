@@ -8,6 +8,15 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
+    public function fetchBookPrice(Request $request)
+{
+    $book = Book::find($request->book_id);
+    if ($book) {
+        return response()->json(['unit_price' => $book->unit_price]);
+    }
+    return response()->json(['unit_price' => 0]);
+}
+
     public function delete($id){
         $book = Book::findOrFail($id);
 
