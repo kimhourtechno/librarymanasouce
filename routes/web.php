@@ -77,7 +77,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/returnbook/{student_id}/{borrow_id}', [ReturnController::class, 'returnbook'])->name('returnbook.return');
     Route::get('/books/details/{id}', [BookController::class, 'getBookDetails'])->name('books.details');
 // Add this route in your web.php
-    Route::get('/fetch-book-details', [ReturnController::class, 'fetchBookDetails']);    //borrow
+    // Route::get('/fetch-book-details', [ReturnController::class, 'fetchBookDetails']);    //borrow
+    // Route::get('/fetch-book-price', [BookController::class, 'fetchBookPrice'])->name('fetchBookPrice');
+    Route::get('/book-price/{id}', [BookController::class, 'getPrice']);
+
     Route::get('/books/details/{id}', [BookController::class, 'details'])->name('books.details');
 
     Route::post('/borrow/add', [BorrowController::class, 'add'])->name('borrow.add');

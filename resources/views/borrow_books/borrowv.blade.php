@@ -102,7 +102,7 @@
                             </div>
                              @endif
                           <div class="form-group">
-                            <label for="">Book</label>
+                            <label for="book_id">Book</label>
                             <select name="book_id" id="book_id" class="form-control select2">
                                 <option value="" required>select</option>
                                 @foreach($book as $b)
@@ -137,10 +137,10 @@
                                                     <input type="text" class="form-control " id="qty" name="qty" style="margin-bottom: 8px;">
                                                 </div>
                                                 <div class="d-flex align-items-center">
-                                                    <label class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+                                                    <label for="unit" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
                                                         <span class="bs-stepper-label">Unit Price ($):</span>
                                                     </label>
-                                                <input type="text" class="form-control " id="unit_price" name="unit_price" style="margin-bottom: 8px;" disabled>
+                                                    <input type="text" class="form-control" id="unit_price" name="unit_price" style="margin-bottom: 8px;" disabled>
                                                 </div>
 
                                             </div>
@@ -348,6 +348,41 @@
 </div>
 @endsection
 
+@section('js')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // When the book is selected
+        $('#book_id').on('change', function () {
+            var bookId = $(this).val(); // Get selected book id
+
+            if (bookId) {
+                // AJAX request to fetch the book price
+                $.ajax({
+                    url: '/book-price/' + bookId,
+                    type: 'GET',
+                    success: function (data) {
+                        // If the book price is returned successfully, update the input field
+                        if (data.price) {
+                            $('#unit_price').val(data.price);
+                        } else {
+                            $('#unit_price').val('Price not available');
+                        }
+                    },
+                    error: function () {
+                        alert('Error fetching book price');
+                    }
+                });
+            } else {
+                // Clear the unit_price if no book is selected
+                $('#unit_price').val('');
+            }
+        });
+    });
+</script>
+@endsection
+
 
 @section('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -355,33 +390,7 @@
 @endsection
 
 @section('js')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#book_id').change(function() {
-            var bookId = $(this).val();
-            if (bookId) {
-                $.ajax({
-                    url: '{{ route('books.details', '') }}/' + bookId,
-                    method: 'GET',
-                    success: function(data) {
-                        if (data.unit_price !== undefined) {
-                            $('#unit_price').val(data.unit_price);
-                        } else {
-                            $('#unit_price').val('');
-                        }
-                    },
-                    error: function() {
-                        $('#unit_price').val('');
-                        alert('Failed to fetch book details.');
-                    }
-                });
-            } else {
-                $('#unit_price').val('');
-            }
-        });
-    });
-</script>
+
 @endsection
 
 

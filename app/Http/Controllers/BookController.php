@@ -8,14 +8,24 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
-    public function fetchBookPrice(Request $request)
-{
-    $book = Book::find($request->book_id);
-    if ($book) {
-        return response()->json(['unit_price' => $book->unit_price]);
+    public function getPrice($id)
+    {
+        $book = Book::find($id);
+        if ($book) {
+            return response()->json(['price' => $book->book_price]);
+        }
+        return response()->json(['error' => 'Book not found'], 404);
     }
-    return response()->json(['unit_price' => 0]);
-}
+    public function fetchBookPrice(Request $request)
+    {
+        $book = Book::find($request->book_id);
+
+        if ($book) {
+            return response()->json(['unit_price' => $book->book_price]);
+        }
+
+        return response()->json(['unit_price' => 0]);
+    }
 
     public function delete($id){
         $book = Book::findOrFail($id);
@@ -29,18 +39,18 @@ class BookController extends Controller
 
 
     }
-    public function getBookDetails($id)
-    {
-        $book = Book::find($id);
+    // public function getBookDetails($id)
+    // {
+    //     $book = Book::find($id);
 
-        if ($book) {
-            return response()->json([
-                'unit_price' => $book->	book_price,
-            ]);
-        }
-        return response()->json(['error' => 'Book not found'], 404);
+    //     if ($book) {
+    //         return response()->json([
+    //             'unit_price' => $book->	book_price,
+    //         ]);
+    //     }
+    //     return response()->json(['error' => 'Book not found'], 404);
 
-    }
+    // }
     public function search(Request $request)
 {
     $query = $request->input('query');
