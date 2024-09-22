@@ -56,6 +56,7 @@
                         @endforeach
                       </select>
                   </div>
+                  
 
                   <div class="form-group">
                     <label for="return_date">Return Date: <span style="color: rgb(73, 69, 209); font-weight: bold;">{{ $currentDate }}</span></label>
@@ -134,6 +135,21 @@
       <!-- ./row -->
     </div><!-- /.container-fluid -->
   </section>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get today's date
+        var today = new Date();
+        var day = String(today.getDate()).padStart(2, '0');
+        var month = today.toLocaleString('default', { month: 'short' }); // Get month as short name (e.g., Sep)
+        var year = today.getFullYear();
+
+        // Format the date as dd-MMM-yyyy
+        var formattedDate = day + '-' + month + '-' + year;
+
+        // Display the formatted date in the label's span
+        document.getElementById("due_return_date_label").textContent = formattedDate;
+    });
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
