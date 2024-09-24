@@ -78,6 +78,7 @@ class ReturnBrokenController extends Controller
     $brokenBookDetail->unit_price = $request->unit_price;
     $brokenBookDetail->total_price = $request->total_price;
     $brokenBookDetail->notes = $request->notes;
+    $brokenBookDetail->librarian_id = auth()->user()->id;
     $brokenBookDetail->save();
 
     // Redirect with success message

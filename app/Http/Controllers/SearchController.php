@@ -93,7 +93,7 @@ class SearchController extends Controller
         )
         ->get();
 
-    
+
 
     return view('returns.storyreturnv', $data);
     }
