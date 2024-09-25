@@ -26,8 +26,6 @@ class ReturnBrokenController extends Controller
         // Retrieve the books based on the book IDs found
         $books = Book::whereIn('id', $bookIds)->get();
 
-        // Get the current date in YYYY-MM-DD format
-        $currentDate = \Carbon\Carbon::now()->format('d-m-Y');
 
         // Pass the data to the view
         return view('returns.returnbrokenv', [
@@ -35,7 +33,7 @@ class ReturnBrokenController extends Controller
             'borrow' => $borrowRecord,
             'borrow_id' => $borrowRecord->borrow_id, // Pass borrow_id to the view
             'books' => $books, // Pass the retrieved books to the view
-            'currentDate' => $currentDate, // Pass the current date to the view
+            // 'currentDate' => $currentDate, // Pass the current date to the view
         ]);
     }
     public function store(Request $request)
@@ -48,13 +46,12 @@ class ReturnBrokenController extends Controller
         'total_price' => 'required|numeric|min:0',
     ]);
 
-    // Convert return_date from 'DD-MM-YYYY' to 'YYYY-MM-DD'
-    $formattedDate = Carbon::createFromFormat('d-m-Y', $request->return_date)->format('Y-m-d');
+
 
     // Check if there is already an entry in the brokenbooks table with the same borrow_id and return_date
     $existingBrokenBook = BrokenBook::where('borrow_id', $request->borrow_id)
-        ->where('return_date', $formattedDate)
-        ->first();
+    ->whereDate('return_date', now()->toDateString()) // Use whereDate to only compare dates
+    ->first();
 
     if ($existingBrokenBook) {
         // If an existing record is found, use its brokenbook_id
@@ -63,7 +60,7 @@ class ReturnBrokenController extends Controller
         // If no existing record is found, create a new one
         $newBrokenBook = new BrokenBook();
         $newBrokenBook->borrow_id = $request->borrow_id;
-        $newBrokenBook->return_date = $formattedDate;
+        $newBrokenBook->return_date = now()->subDay();;
         $newBrokenBook->save();
 
         // Get the brokenbook_id of the newly created record

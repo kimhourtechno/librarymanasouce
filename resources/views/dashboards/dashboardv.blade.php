@@ -79,71 +79,7 @@
         </div>
 
         <!-- Data Table for Return Books -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
 
-                    <!-- /.card-header -->
-                    {{-- <div class="card-header"><h2>Return Book</h2></div> --}}
-                    <div class="card-header"><h2>Story Return</h2></div>
-                    <div class="card-header">
-                      <h3 class="card-title">The student returned the book to the library</h3>
-
-                    </div>
-                    <div>
-                        <div class="card-body">
-                            <div class="btn-group btn-group-sm">
-                              <a class="btn btn-custom-size btn-font bg-gradient-secondary" href="{{ route('return.index') }}"> <span class="sp-font">All</span></a>
-                            </div>
-                            <div class="btn-group btn-group-sm">
-                                <a class="btn btn-custom-size bg-gradient-secondary" href="{{ route('search.today') }}"> <span class="sp-font">Today</span> </a>
-                             </div>
-                            <div class="btn-group btn-group-sm">
-                                <a class="btn btn-custom-size bg-gradient-secondary" href="{{ route('search.yesterday') }}"><span class="sp-font">Yesterday</span></a>
-                           </div>
-                         <div class="btn-group btn-group-sm">
-                                <a class="btn btn-custom-size bg-gradient-secondary" href="{{ route('search.thisweek') }}" style="padding: 4px"><span class="sp-font">This Week</span></a>
-                        </div>
-                           <div class="btn-group btn-group-sm">
-                            <a class="btn btn-custom-size bg-gradient-secondary" href="{{ route('search.thismonth') }}" style="padding: 4px"><span class="sp-font">This month</span></a>
-                        </div>
-                        </div>
-                     </div>
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID Borrow</th>
-                                    <th>Book Name</th>
-                                    <th>Borrower</th>
-                                    <th>Quantity</th>
-                                    <th>Return Date</th>
-                                    <th>Borrow By</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($returnBooks as $returnBook)
-                                <tr>
-                                    <td>{{ $returnBook->borrow_id }}</td>
-                                    <td>{{ $returnBook->book_name }}</td>
-                                    <td>{{ $returnBook->student_name }}</td>
-                                    <td>{{ $returnBook->qty_return }}</td>
-
-                                    <td>{{ $returnBook->return_date }}</td>
-
-                                    <td>{{ $returnBook->librarian_name }}</td>
-                                </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-            </div>
-        </div>
     </div><!-- /.container-fluid -->
 </section>
 @endsection

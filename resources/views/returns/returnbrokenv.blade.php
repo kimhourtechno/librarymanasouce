@@ -56,11 +56,14 @@
                         @endforeach
                       </select>
                   </div>
-                  
+
+
 
                   <div class="form-group">
-                    <label for="return_date">Return Date: <span style="color: rgb(73, 69, 209); font-weight: bold;">{{ $currentDate }}</span></label>
-                    <input type="hidden" name="return_date" value="{{ $currentDate }}">
+
+                    <label for="due_return_date">Due Return Date:
+                        <span id="due_return_date_label" style="color: rgb(16, 128, 220); font-weight: bold;"></span>
+                    </label>
                 </div>
                   <div class="form-group">
                       <label for="qty">Quantity</label>

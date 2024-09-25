@@ -14,5 +14,9 @@ class BrokenBookDetail extends Model
     public $timestamps = false;
 
     // Define fillable fields
+    public function brokenBook()
+{
+    return $this->belongsTo(BrokenBook::class, 'brokenbook_id');
+}
 
 }
