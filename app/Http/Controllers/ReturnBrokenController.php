@@ -60,7 +60,7 @@ class ReturnBrokenController extends Controller
         // If no existing record is found, create a new one
         $newBrokenBook = new BrokenBook();
         $newBrokenBook->borrow_id = $request->borrow_id;
-        $newBrokenBook->return_date = now()->subDay();;
+        $newBrokenBook->return_date = now();
         $newBrokenBook->save();
 
         // Get the brokenbook_id of the newly created record
