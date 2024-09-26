@@ -101,30 +101,30 @@
             <div class="card-body">
                 <div class="card-body">
                     <table id="example2" class="table table-hover">
-                      <thead>
-                      <tr>
-
-                        <th>Book Title</th>
-                        <th>Shelves</th>
-                        <th>Qty</th>
-                        <th>Unit Price</th>
-
-                      </tr>
-                      </thead>
-
-                      <tbody>
-                          {{-- @foreach($borrowDetails as $detail)
-                          <tr>
-                              <td>{{ $detail->bookname }}</td>
-                              <td>{{ $detail->shelfname }}</td>
-                              <td>{{ $detail->qty }}</td>
-                              <td>${{ $detail->unit_price }}</td>
-                              <td>0</td>
-
-                          </tr>
-                          @endforeach --}}
-                      </tbody>
-
+                        <thead>
+                            <tr>
+                                <th>Book ID</th>
+                                <th>Quantity Broken</th>
+                                <th>Unit Price</th>
+                                <th>Total Price</th>
+                                <th>Return By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($brokenBooks as $brokenBook)
+                        <tr>
+                            <td>{{ $brokenBook->bookname }}</td> <!-- Display Book Name -->
+                            <td>{{ $brokenBook->qty_broken }}</td>
+                            <td>{{ number_format($brokenBook->unit_price, 2) }} $</td>
+                            <td>{{ number_format($brokenBook->total_price, 2) }} $</td>
+                            <td>{{ $brokenBook->user_name }}</td> <!-- Display User Name -->
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">No broken books found.</td>
+                        </tr>
+                    @endforelse
+                        </tbody>
                     </table>
                   </div>
                   <!-- /.card-body -->

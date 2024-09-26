@@ -14,9 +14,13 @@ class BrokenBook extends Model
     public $timestamps = false;
 
     // Define fillable fields
-    public function brokenBookDetails()
-{
-    return $this->hasMany(BrokenBookDetail::class, 'brokenbook_id');
-}
+
+    protected $primaryKey = 'brokenbook_id'; // Explicitly set the primary key
+
+    public function details()
+    {
+        return $this->hasMany(BrokenBookDetail::class, 'brokenbook_id', 'brokenbook_id');
+    }
+
 
 }
