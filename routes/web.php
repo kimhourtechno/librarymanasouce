@@ -39,7 +39,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 ///User////
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/user', UserController::class);
-    Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+    // Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+    // Route::resource('/user', UserController::class);
+
 
 });
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

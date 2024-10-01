@@ -48,7 +48,12 @@ class UserController extends Controller
         // Redirect to the user index page with a success message
         return redirect()->route('user.index')->with('success', 'User created successfully.');
     }
+    public function edit(){
+        return view('user.useredit');
 
+    }
+
+    
 
     // public function store(Request $r){
     //     $r->validate([
