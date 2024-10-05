@@ -46,12 +46,16 @@ class BorrowDetailController extends Controller
         $borrowDetail->borrow_id = $validated['borrow_id'];
         $borrowDetail->book_id = $validated['book_id'];
         $borrowDetail->unit_price = $validated['unit_price'];
+
         $borrowDetail->qty = $validated['qty'];
         $borrowDetail->save();
 
         // Automatically set the librarian_id after saving, if not already set
         if (!$borrow->librarian_id) {
             $borrow->librarian_id = auth()->user()->id; // Assuming the logged-in user is the librarian
+        }
+        if (!$borrow->borrow_date) {
+            $borrow->borrow_date = now();
         }
 
         // Update the borrow record with return_date if not already set

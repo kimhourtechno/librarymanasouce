@@ -140,7 +140,9 @@
                                                     <label for="unit" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
                                                         <span class="bs-stepper-label">Unit Price ($):</span>
                                                     </label>
-                                                    <input type="text" class="form-control" id="unit_price" name="unit_price" style="margin-bottom: 8px;" disabled>
+                                                    {{-- <input type="text" class="form-control" id="unit_price" name="unit_price" style="margin-bottom: 8px;" disabled> --}}
+                                                    <input type="text" class="form-control" id="unit_price" name="unit_price" style="margin-bottom: 8px;" readonly>
+
                                                 </div>
 
                                             </div>
@@ -186,7 +188,7 @@
                       <th>Book Title</th>
                       <th>Shelves</th>
                       <th>Qty</th>
-                      <th>Unit Price</th>
+                        <th>Borrow Date</th>
                       <th>Rememnig</th>
                     </tr>
                     </thead>

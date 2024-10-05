@@ -54,27 +54,10 @@ class BorrowController extends Controller
         return view('borrow_books.borrowv', compact('student', 'borrow', 'book','borrowDetails'));
 
     }
-    // public function edit($id){
-    //     $data['borrows'] = Borrow::where('user_id',$id)
-    //     ->where('action',1)
-    //     ->join('books', 'borrows.book_id', '=', 'books.id')
-    //     ->join('shelves','books.author_id','=','shelves.shelf_id')
-    //     ->select(
-    //         'borrows.*',
-    //         'books.bookname as bookname',
-    //         'shelves.shelf_name as shelfname'
-    //     )
-    //     ->get();
 
-    //     $data ['student'] = Student::find($id);
-    //     $data ['book'] = Book::all();
-    //     return view('borrow_books.borrowv',$data);
-    // }
     public function store(Request $r)
     {
-        // Validate the incoming request data
 
-         // Validate the incoming request data
          $r->validate([
         'book_id' => 'required|exists:books,id',
     ]);
