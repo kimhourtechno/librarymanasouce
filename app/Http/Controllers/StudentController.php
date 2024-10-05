@@ -61,7 +61,6 @@ class StudentController extends Controller
         $student->father_career = $r->father_career;
 
 
-
         $i = $student->save();
 
         if($i){
@@ -109,10 +108,9 @@ class StudentController extends Controller
         }
     }
     public function delete($id){
-        // $student = Student::find($id);
-        // $i = $student->delete();
+
         $i= Student::where('id',$id)
-        ->update(['action'=>1]);
+        ->update(['action'=>0]);
         if($id){
             return redirect()->route('student.index')
             ->with('success','Data has been removed');

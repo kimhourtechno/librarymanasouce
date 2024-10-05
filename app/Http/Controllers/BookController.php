@@ -88,8 +88,6 @@ class BookController extends Controller
 
 
 
-
-
     public function index(){
 
         $data['books'] = Book::join('book_categorys', 'books.book_category_id', '=', 'book_categorys.book_category_id')
