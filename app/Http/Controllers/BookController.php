@@ -63,7 +63,7 @@ class BookController extends Controller
     // Searching across multiple fields in the books table and related tables
     $books = Book::join('book_categorys', 'books.book_category_id', '=', 'book_categorys.book_category_id')
         ->join('authors', 'books.author_id', '=', 'authors.author_id')
-        ->join('shelves', 'books.shelf_id', '=', 'shelves.shelf_id')
+        // ->join('shelves', 'books.shelf_id', '=', 'shelves.shelf_id')
         ->where('books.bookname', 'like', "%{$query}%")
         ->orWhere('books.book_qty', 'like', "%{$query}%")
         ->orWhere('books.book_price', 'like', "%{$query}%")
@@ -71,13 +71,15 @@ class BookController extends Controller
         ->orWhere('books.years_published', 'like', "%{$query}%")
         ->orWhere('books.lost_price', 'like', "%{$query}%")
         ->orWhere('authors.author_name', 'like', "%{$query}%")
-        ->orWhere('shelves.shelf_name', 'like', "%{$query}%")
+        ->orWhere('books.shelve_name', 'like', "%{$query}%")
+
+        // ->orWhere('shelves.shelf_name', 'like', "%{$query}%")
         ->orWhere('book_categorys.book_category_name', 'like', "%{$query}%")
         ->select(
             'books.*',
             'book_categorys.book_category_name as bookcategory',
             'authors.author_name as gname',
-            'shelves.shelf_name as shelfname'
+            // 'shelves.shelf_name as shelfname'
         )
         ->get();
 
