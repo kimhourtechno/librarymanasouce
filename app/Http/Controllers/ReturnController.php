@@ -42,7 +42,7 @@ class ReturnController extends Controller
             // Use the existing ReturnBook record
             $returnBook = $existingReturnBook;
         }
-        
+
         // Save to returnbookdetails table
         $returnBookDetail = new ReturnBookDetail();
         $returnBookDetail->returnbook_id = $returnBook->id; // Foreign key reference to returnbooks table
@@ -73,24 +73,6 @@ class ReturnController extends Controller
         ->where('returnbooks.borrow_id', $borrow_id)  // Filter by borrow_id
         ->get();
 
-        // $returnBooks = ReturnBook::join('returnbookdetails', 'returnbooks.id', '=', 'returnbookdetails.returnbook_id')
-        // ->join('books', 'returnbookdetails.book_id', '=', 'books.id')
-        // ->select(
-
-        //     'returnbookdetails.book_id',
-        //          'books.bookname as book_name',
-        //          DB::raw('SUM(returnbookdetails.qty_return) as total_qty_return'))
-        // ->where('returnbooks.borrow_id', $borrow_id)  // Filter by borrow_id
-        // ->groupBy('returnbookdetails.book_id', 'books.bookname')
-        // ->get();
-        // $returnBookDetails = ReturnBookDetail::join('books', 'returnbookdetails.book_id', '=', 'books.id')
-        // ->select('returnbookdetails.returnbook_id',
-        //
-
-        //   'returnbookdetails.qty_return')
-        // ->get();
-
-
             // Find the borrow record using the borrow_id
             $borrow = Borrow::find($borrow_id);
 
@@ -115,7 +97,7 @@ class ReturnController extends Controller
             }
 
                 return view('returns.returnbook', compact('student', 'borrow', 'books', 'overdueDays', 'returnBooks'));
-        }
+     }
 
     public function fetchBookDetails(Request $request)
     {

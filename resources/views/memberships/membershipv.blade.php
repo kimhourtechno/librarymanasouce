@@ -38,7 +38,7 @@
                                         <td>{{ $student->name }}</td>
                                         <td>{{ $student->borrow_date }}</td>
                                         <td>{{ $student->return_date }}</td>
-                                        <td>{{ now()->format('Y-m-d') }}</td>
+                                        <td>{{ now()->format('d-m-Y') }}</td>
                                         <td>N?Q</td>
                                         <td>{{ $student->librarian_name }}</td>
                                         <td>

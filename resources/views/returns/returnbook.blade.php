@@ -118,7 +118,6 @@
                             <td>{{ $book->book_name }}</td>
                             <td>{{ $book->qty_return}}</td>
                             <td>{{ $book->return_date }}</td> <!-- Display return date -->
-
                             <td>{{ $book->total_price }} $</td> <!-- Display total price -->
 
                         </tr>
