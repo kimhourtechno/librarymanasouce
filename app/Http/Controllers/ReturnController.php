@@ -26,6 +26,7 @@ class ReturnController extends Controller
             'total_price' => 'nullable|numeric|min:0',
             'notes' => 'nullable|string',
         ]);
+    $book = Book::findOrFail($request->input('book_id'));
 
         // Check if there is an existing ReturnBook record with the same borrow_id and today's date
         $existingReturnBook = ReturnBook::where('borrow_id', $request->input('borrow_id'))
@@ -52,10 +53,14 @@ class ReturnController extends Controller
         $returnBookDetail->note = $request->input('notes');
         $returnBookDetail->save();
 
+          // Update the book's qty_available by adding the returned quantity
+    $book->available += $request->input('qty'); // Increase the book's qty_available by qty_return
+    $book->save();
+
+
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Book return recorded successfully!');
     }
-
 
     public function returnbook($student_id, $borrow_id){
 
@@ -69,23 +74,21 @@ class ReturnController extends Controller
             'returnbookdetails.qty_return as qty_return',
             'returnbookdetails.totalprice as total_price'  // Include totalprice field
 
+
         )
         ->where('returnbooks.borrow_id', $borrow_id)  // Filter by borrow_id
         ->get();
-
             // Find the borrow record using the borrow_id
             $borrow = Borrow::find($borrow_id);
-
             // Fetch the student record using the student_id
             $student = Student::find($student_id);
-
             // Get all book IDs associated with the given borrow_id from the borrowdetail table
             $bookIds = BorrowDetail::where('borrow_id', $borrow_id)->pluck('book_id');
 
             // Retrieve all books associated with the borrow_id
             $books = Book::whereIn('id', $bookIds)->get();
             // Calculate overdue days
-                    // Calculate overdue days
+              // Calculate overdue days
             $currentDate = Carbon::now();
             $returnDate = $borrow->return_date ? Carbon::parse($borrow->return_date) : $currentDate;
 
