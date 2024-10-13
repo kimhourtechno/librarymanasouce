@@ -64,12 +64,15 @@ class UserController extends Controller
             'email' => 'required|email|max:255|unique:users,email,' . $id,
             'gender' => 'required|string|in:M,F',
             'role' => 'required|string|in:admin,user',
+            'place_of_birth' => 'required|string|max:255', // Add validation for place_of_birth
+
             'password' => 'nullable|string|min:8|confirmed', // Password is optional, but if provided, must be confirmed
         ]);
 
         // Update the user's information
         $user->name = $validatedData['name'];
         $user->phone = $validatedData['phone'];
+        $user->place_of_birth = $validatedData['place_of_birth'];
         $user->email = $validatedData['email'];
         $user->gender = $validatedData['gender'];
         $user->role = $validatedData['role'];
@@ -79,12 +82,23 @@ class UserController extends Controller
             $user->password = Hash::make($validatedData['password']);
         }
 
+
         // Save the updated user information
         $user->save();
 
         // Redirect back to a desired route with a success message
         return redirect()->route('user.index')->with('success', 'User updated successfully.');
 
+    }
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+        // $user->action = 0;  // Set action to 0 to deactivate the user
+        $user->action = $user->action == 1 ? 0 : 1;
+
+        $user->save();
+
+        return redirect()->route('user.index')->with('success', 'User deactivated successfully.');
     }
 
 

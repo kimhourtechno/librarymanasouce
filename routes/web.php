@@ -39,8 +39,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 ///User////
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/user', UserController::class);
-    // Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
-    // Route::resource('/user', UserController::class);
+    Route::delete('/user/{id}/delete', [UserController::class, 'delete'])->name('user.delete');
+
+
 
 
 });
@@ -63,7 +64,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboardreturnbroken', [DashboardController::class, 'dashboardbroken'])->name('dashboard.returnbroken');
 
     Route::get('/dashboardborrow', [DashboardController::class, 'dashboardborrow'])->name('dashboard.borrow');
-    // Route::get('/dashboard/borrow', [DashboardController::class, 'dashboardborrow'])->name('dashboard.borrow');
 
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard.view');
     //return broken
