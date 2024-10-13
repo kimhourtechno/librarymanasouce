@@ -48,42 +48,46 @@ class UserController extends Controller
         // Redirect to the user index page with a success message
         return redirect()->route('user.index')->with('success', 'User created successfully.');
     }
-    public function edit(){
-        return view('user.useredit');
+    public function edit($id){
+        $user = User::findOrFail($id); // Find the user by ID
+        return view('user.useredit', compact('user'));
+
+    }
+    public function update(Request $request, $id){
+
+        $user = User::findOrFail($id);
+
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:15', // Adjust max length as per your requirements
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'gender' => 'required|string|in:M,F',
+            'role' => 'required|string|in:admin,user',
+            'password' => 'nullable|string|min:8|confirmed', // Password is optional, but if provided, must be confirmed
+        ]);
+
+        // Update the user's information
+        $user->name = $validatedData['name'];
+        $user->phone = $validatedData['phone'];
+        $user->email = $validatedData['email'];
+        $user->gender = $validatedData['gender'];
+        $user->role = $validatedData['role'];
+
+        // Update password if it was provided
+        if ($request->filled('password')) {
+            $user->password = Hash::make($validatedData['password']);
+        }
+
+        // Save the updated user information
+        $user->save();
+
+        // Redirect back to a desired route with a success message
+        return redirect()->route('user.index')->with('success', 'User updated successfully.');
 
     }
 
-    
 
-    // public function store(Request $r){
-    //     $r->validate([
-    //         'name' => 'required|string|max:255',
-    //         'phone' => 'required|string|max:15',
-    //         'email' => 'required|string|email|max:255|unique:users',
-    //         'password' => 'required|string|min:8|confirmed',
-    //         'place_of_birth' => 'required|string|max:255',
-    //         'gender' => 'required|string|in:M,F',
-    //         'role' => 'required|string|in:admin,user',
-    //     ]);
 
-    //     $data = array(
-    //         'name'=>$r->name,
-    //         'phone'=>$r->phone,
-    //         'email'=>$r->email,
-    //         'password'=> bcrypt($r->password),
-    //         'place_of_birth'=> $r->place_of_birth,
-    //         'gender'=> $r->gender,
-    //         'role'=> $r->role
-    //     );
-    //     $i = DB::table('users')->insert($data);
-    //     if(!$i){
-    //         return redirect('user/create')
-    //         ->with('success','data has been saved');
-    //     }
-    //     else{
-    //         return redirect('user/create')
-    //         ->with('error','Fail to save data');
-    //     }
-    // }
 
 }

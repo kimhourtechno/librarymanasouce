@@ -36,13 +36,10 @@
                     </div>
                     <div class="form-group">
                         <label for="password" >Password</label>
+
                         <input type="password" id="password" name="password" class="form-control" placeholder="Password" required autocomplete="off">
                     </div>
 
-                    <div class="form-group">
-                      <label for="date_of_birth">Date of Birth</label>
-                      <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
-                  </div>
 
 
                   </div>

@@ -18,32 +18,41 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <form action="{{ route('user.store') }}" method="POST">
-              @csrf
+          <form action="{{ route('user.update',$user->id) }}" method="POST">
+            @csrf
+            @method('PUT')
               <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                         <label for="name">Student Name</label>
-                        <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control" placeholder="Name" required>
+                        <input type="text" id="name" name="name" value="{{ $user->name }}" class="form-control" placeholder="Name" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" required value="{{ $user->phone }}">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required value="{{ $user->email }}">
                     </div>
+
+            
+
                     <div class="form-group">
-                        <label for="password" >Password</label>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required autocomplete="off">
+                        <label for="password">New Password</label>
+                        <div class="input-group">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Enter new password (if you want to change)" autocomplete="off">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">Show</button>
+                            </div>
+                        </div>
+                        <small class="text-muted">Leave blank if you do not want to change the password.</small>
                     </div>
 
                     <div class="form-group">
-                      <label for="date_of_birth">Date of Birth</label>
-                      <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
-                  </div>
-
+                        <label for="password_confirmation">Confirm New Password</label>
+                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Confirm new password" autocomplete="off">
+                    </div>
 
                   </div>
                   <!-- /.col -->
@@ -51,20 +60,21 @@
                     <div class="form-group">
                       <label for="gender">Gender</label>
                       <select class="form-control" id="gender" name="gender" style="width: 100%;" required>
-                        <option value="" disabled selected>Select Gender</option>
-                        <option value="M">Male</option>
-                        <option value="F">Female</option>
+                        <option value="" disabled>Select Gender</option>
+                        <option value="M" {{ $user->gender == 'M' ? 'selected' : '' }}>Male</option>
+                        <option value="F" {{ $user->gender == 'F' ? 'selected' : '' }}>Female</option>
                       </select>
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="placeofbirth">Place of Birth</label>
                         <select class="form-control" id="place_of_birth" name="place_of_birth" style="width: 100%;" required>
-                          <option value="" disabled selected>Select Grade/Class</option>
-                          <option value="PP">PP</option>
-                          <option value="SH">SH</option>
-                          <option value="KTH">KTH</option>
-                          <option value="KP">KP</option>
+                            <option value="" disabled>Select Grade/Class</option>
+                            <option value="PP" {{ $user->place_of_birth == 'PP' ? 'selected' : '' }}>PP</option>
+                            <option value="SH" {{ $user->place_of_birth == 'SH' ? 'selected' : '' }}>SH</option>
+                            <option value="KTH" {{ $user->place_of_birth == 'KTH' ? 'selected' : '' }}>KTH</option>
+                            <option value="KP" {{ $user->place_of_birth == 'KP' ? 'selected' : '' }}>KP</option>
+                        </select>
                         </select>
                     </div>
                     <div class="form-group">
@@ -72,8 +82,8 @@
 
                             <select id="role" name="role" class="form-control" required>
                                 <option value="">Select Role</option>
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
+                                <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
                             </select>
 
                     </div>
@@ -84,7 +94,7 @@
 
                <div class="row" style="display: flow">
                   <div class="card-footer text-center" >
-                    <button type="submit" class="btn bg-secondary color-palette">Add User</button>
+                    <button type="submit" class="btn bg-secondary color-palette">Update User</button>
                     <button type="reset" class="btn btn-default">Cancel</button>
                   </div>
 
@@ -97,4 +107,33 @@
     </div>
     <!-- /.container-fluid -->
   </section>
+
+  <!-- JavaScript for Toggle Password Visibility -->
+  <script>
+    function togglePassword() {
+        const passwordField = document.getElementById('password');
+        const toggleButton = event.target;
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            toggleButton.textContent = "Hide";
+        } else {
+            passwordField.type = "password";
+            toggleButton.textContent = "Show";
+        }
+    }
+
+    function togglePasswordConfirmation() {
+        const passwordConfirmationField = document.getElementById('password_confirmation');
+        const toggleButton = event.target;
+
+        if (passwordConfirmationField.type === "password") {
+            passwordConfirmationField.type = "text";
+            toggleButton.textContent = "Hide";
+        } else {
+            passwordConfirmationField.type = "password";
+            toggleButton.textContent = "Show";
+        }
+    }
+</script>
 @endsection
