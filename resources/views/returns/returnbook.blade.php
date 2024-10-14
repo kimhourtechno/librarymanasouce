@@ -119,6 +119,31 @@
                             <td>{{ $book->qty_return}}</td>
                             <td>{{ $book->return_date }}</td> <!-- Display return date -->
                             <td>{{ $book->total_price }} $</td> <!-- Display total price -->
+                            @php
+                            // Get the initial borrowed quantity
+                            $borrowDetail = \App\Models\BorrowDetail::where('book_id', $book->book_id)
+                                ->where('borrow_id', $book->borrow_id) // Assuming you have borrow_id
+                                ->first();
+
+                            $borrowedQty = $borrowDetail ? $borrowDetail->qty : 0;
+
+                            // Get all returned quantities for the current book
+                            $returnedBooks = \App\Models\ReturnBookDetail::where('book_id', $book->book_id)
+                                ->whereHas('returnbook', function ($query) use ($book) {
+                                    $query->where('borrow_id', $book->borrow_id);
+                                })
+                                ->get();
+
+                            // Initialize remaining quantity
+                            $remainingQty = $borrowedQty;
+
+                            // Loop through each returned book to calculate the remaining quantity
+                            foreach ($returnedBooks as $returnedBook) {
+                                $remainingQty -= $returnedBook->qty_return; // Subtract each returned quantity
+                            }
+                        @endphp
+
+                        <td>{{ max($remainingQty, 0) }}</td> <!-- Display remaining quantity, ensure it's not negative -->
 
                         </tr>
                     @endforeach

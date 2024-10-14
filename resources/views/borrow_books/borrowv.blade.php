@@ -189,6 +189,7 @@
                       <th>Shelves</th>
                       <th>Qty</th>
                         <th>Price of Book</th>
+                        <th>Remainning</th>
                     </tr>
                     </thead>
 
@@ -200,6 +201,13 @@
                             <td>{{ $detail->qty }}</td>
                             <td>${{ $detail->unit_price }}</td>
 
+                            @php
+                    // Get remaining quantity from the remainingQuantities array
+                    $remainingQty = $remainingQuantities[$detail->book_id] ?? 0; // Default to 0 if not set
+                @endphp
+
+                <td>{{ $remainingQty }}</td> <!-- Display remaining quantity -->
+                    </tr>
                         </tr>
                         @endforeach
                     </tbody>
