@@ -188,8 +188,7 @@
                       <th>Book Title</th>
                       <th>Shelves</th>
                       <th>Qty</th>
-                        <th>Borrow Date</th>
-                      <th>Rememnig</th>
+                        <th>Price of Book</th>
                     </tr>
                     </thead>
 
@@ -200,7 +199,6 @@
                             <td>{{ $detail->shelfname }}</td>
                             <td>{{ $detail->qty }}</td>
                             <td>${{ $detail->unit_price }}</td>
-                            <td>0</td>
 
                         </tr>
                         @endforeach

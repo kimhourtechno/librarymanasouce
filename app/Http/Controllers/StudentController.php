@@ -18,20 +18,21 @@ class StudentController extends Controller
     }
     public function search(Request $request){
         $query = $request->input('query');
-        if (!$query) {
-            return redirect()->back()->with('error', 'Search query is required.');
-        }
+    if (!$query) {
+        return redirect()->back()->with('error', 'Search query is required.');
+    }
 
-        $students = Student::where('action', 1)
+    $students = Student::where('action', 1)
         ->where(function($q) use ($query) {
-            $q->where('name', 'like', '%' . $query . '%')
+            $q->where('id', 'like', '%' . $query . '%')  // Search by id
+              ->orWhere('name', 'like', '%' . $query . '%')
               ->orWhere('phone', 'like', '%' . $query . '%');
         })
-            ->orderBy('name', 'desc')
-            ->orderBy('phone', )
-            ->get();
+        ->orderBy('name', 'desc')
+        ->orderBy('phone')
+        ->get();
 
-        return redirect()->back()->with('students', $students)->with('query', $query);
+    return redirect()->back()->with('students', $students)->with('query', $query);
     }
     public function index(){
         $data['students'] = Student::where('action',1)->get();

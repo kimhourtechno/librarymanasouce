@@ -42,6 +42,7 @@ class BorrowController extends Controller
     {
         $borrowDetails = BorrowDetail::where('borrow_id', $borrow_id)
                     ->join('books', 'borrowdetails.book_id', '=', 'books.id')
+                    
                     ->select(
                         'borrowdetails.*',
                         'books.bookname as bookname',

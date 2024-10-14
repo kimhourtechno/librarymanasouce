@@ -23,7 +23,7 @@ class UserController extends Controller
     }
     public function index(){
         // Fetch all users from the User model
-        $users = User::all();
+        $users = User::where('remove', 0)->get();
         // Pass the users data to the view
         return view('user.userlistv', ['users' => $users]);
     }
@@ -43,6 +43,8 @@ class UserController extends Controller
         $user->email = $r->email;
         $user->password = Hash::make($r->password); // Hash the password
         $user->role = $r->role;
+        $user->remove = 0; // Set action field to 0
+
         $user->save();
 
         // Redirect to the user index page with a success message
@@ -99,6 +101,18 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('user.index')->with('success', 'User deactivated successfully.');
+    }
+    public function remove(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        // Set removed field to 0 (indicating the user is removed)
+        $user->remove = 1; // or true if you use boolean
+        $user->action = 0;
+        $user->save();
+
+        // Redirect back to the user list with a success message
+        return redirect()->route('user.index')->with('success', 'User removed successfully.');
     }
 
 

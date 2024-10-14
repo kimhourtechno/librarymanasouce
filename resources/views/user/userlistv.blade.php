@@ -30,8 +30,9 @@
                     <th>ID</th>
                     <th>User Name</th>
                     <th>Email</th>
+                    <th>Phone</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th style="width: 12px">Action</th>
 
                   </tr>
                 </thead>
@@ -42,10 +43,28 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->phone }}</td>
                         <td>{{ $user->role }}</td>
                         <td>
+
                             <!-- Edit Button -->
                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                      <!-- Remove Button -->
+                      <!-- Remove Button -->
+                    <form action="{{ route('user.remove', $user->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this user?')" style="background: #c95757">
+                            Remove
+                        </button>
+                    </form>
+                      {{-- <form action="{{ route('user.remove', $user->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this user?')" style="background: #c95757">
+                            Remove
+                        </button>
+                    </form> --}}
+
+
 
                             <!-- Delete Button -->
                             <form action="{{ route('user.delete', $user->id) }}" method="POST" style="display:inline;">
@@ -55,6 +74,9 @@
                                     {{ $user->action == 1 ? 'Deactivate' : 'Activate' }}
                                 </button>
                             </form>
+
+
+
                         </td>
                     </tr>
                 @endforeach

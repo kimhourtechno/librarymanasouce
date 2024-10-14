@@ -40,6 +40,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/user', UserController::class);
     Route::delete('/user/{id}/delete', [UserController::class, 'delete'])->name('user.delete');
+// In your web.php file
+Route::post('/user/{id}/remove', [UserController::class, 'remove'])->name('user.remove');
+
 
 
 
