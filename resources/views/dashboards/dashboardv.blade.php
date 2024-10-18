@@ -25,8 +25,10 @@
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h3>{{ $bookCount }}</h3>
-                        <p>Total Books</p>
+
+                        <p>Books</p>
                     </div>
+
                     <div class="icon">
                         <i class="fas fa-book"></i>
                     </div>
@@ -66,12 +68,26 @@
                 <div  class="small-box bg-secondary">
                     <div class="inner">
                         <h3>{{ $brokenReturnCount }}</h3>
-                        <p>Broken/Lost</p>
+                        <p>Broken and Lost</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-cogs"></i> <!-- Icon for broken book details -->
                     </div>
                     <a href="{{ route('dashboard.returnbroken') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-primary"> <!-- Changed color to primary for user -->
+                    <div class="inner">
+                        <h3>2</h3>
+                        <p>Users And Admin</p>
+                    </div>
+
+                    <div class="icon">
+                        <i class="fas fa-users"></i> <!-- Icon for users -->
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 

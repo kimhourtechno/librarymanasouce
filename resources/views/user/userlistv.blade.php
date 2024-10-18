@@ -53,29 +53,19 @@
                       <!-- Remove Button -->
                     <form action="{{ route('user.remove', $user->id) }}" method="POST" style="display:inline;">
                         @csrf
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this user?')" style="background: #c95757">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this user?')">
                             Remove
                         </button>
                     </form>
-                      {{-- <form action="{{ route('user.remove', $user->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this user?')" style="background: #c95757">
-                            Remove
-                        </button>
-                    </form> --}}
-
-
 
                             <!-- Delete Button -->
                             <form action="{{ route('user.delete', $user->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm {{ $user->action == 1 ? 'btn-danger' : 'btn-success' }}" onclick="return confirm('Are you sure you want to change the status of this user?')">
+                                <button type="submit" class="btn btn-sm {{ $user->action == 1 ? 'btn-warning' : 'btn-success' }}" onclick="return confirm('Are you sure you want to change the status of this user?')">
                                     {{ $user->action == 1 ? 'Deactivate' : 'Activate' }}
                                 </button>
                             </form>
-
-
 
                         </td>
                     </tr>
