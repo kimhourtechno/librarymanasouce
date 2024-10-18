@@ -1,7 +1,11 @@
 @extends('layouts.return.returnm')
 @section('returnbookly')
 <div class="content-wrapper">
-    @if(session('success'))
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -9,9 +13,11 @@
             </button>
         </div>
     @endif
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
+    @if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+    </div>
+    @endif
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Return Book</h1>
@@ -164,6 +170,21 @@
   </div>
 
   <!-- JavaScript for calculation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Hide alert after 5 seconds
+        setTimeout(function() {
+            var alertElement = document.querySelector('.alert');
+            if (alertElement) {
+                alertElement.classList.add('fade');
+                setTimeout(() => {
+                    alertElement.remove();
+                }, 150); // Remove the element after the fade out animation
+            }
+        }, 5000); // 5 seconds
+    });
+</script>
+
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {

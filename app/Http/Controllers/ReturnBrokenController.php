@@ -58,10 +58,6 @@ return view('returns.returnbrokenv', [
     }
 
 
-
-
-
-
     public function store(Request $request)
     {
         // Validate the input
