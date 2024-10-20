@@ -116,5 +116,6 @@ return view('returns.returnbrokenv', [
     return redirect()->back()->with('success', 'Broken book details saved successfully!');
 }
 
+    ///delete
 
 }
