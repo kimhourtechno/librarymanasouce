@@ -66,7 +66,6 @@ return view('returns.returnbrokenv', [
         'qty_broken' => 'required|integer|min:1',
         'unit_price' => 'required|numeric|min:0',
         'total_price' => 'required|numeric|min:0',
-        'notes' => 'nullable|string',
     ]);
 
     // Retrieve the total quantity borrowed for the specific book_id
@@ -118,51 +117,4 @@ return view('returns.returnbrokenv', [
 }
 
 
-
-    // public function store(Request $request)
-    // {
-    //     // Validate the input
-    //     $request->validate([
-    //         'borrow_id' => 'required|exists:borrows,borrow_id', // Validate borrow_id
-    //         'book_id' => 'required|exists:books,id', // Validate book_id exists in books table
-    //         'qty_broken' => 'required|integer|min:1',
-    //         'unit_price' => 'required|numeric|min:0',
-    //         'total_price' => 'required|numeric|min:0',
-    //         'notes' => 'nullable|string',
-    //     ]);
-
-    //     // Check if there is already an entry in the brokenbooks table with the same borrow_id and return_date (today)
-    //     $existingBrokenBook = BrokenBook::where('borrow_id', $request->borrow_id)
-    //         ->whereDate('return_date', now()->toDateString()) // Check if today's date matches the return date
-    //         ->first();
-
-    //     if (!$existingBrokenBook) {
-    //         // If no existing record is found, create a new entry in brokenbooks table
-    //         $newBrokenBook = new BrokenBook();
-    //         $newBrokenBook->borrow_id = $request->borrow_id;
-    //         $newBrokenBook->return_date = now(); // Save today's date as return_date
-    //         $newBrokenBook->save();
-
-    //         // Get the brokenbook_id of the newly created record
-    //         $brokenbook_id = $newBrokenBook->brokenbook_id; // The ID of the new record
-    //     } else {
-    //         // If an existing record is found, use its brokenbook_id
-    //         $brokenbook_id = $existingBrokenBook->brokenbook_id;
-
-    //     }
-
-    //     // Save the data into brokenbookdetails table using the brokenbook_id
-    //     $brokenBookDetail = new BrokenBookDetail();
-    //     $brokenBookDetail->brokenbook_id = $brokenbook_id; // Make sure the same brokenbook_id is used here
-    //     $brokenBookDetail->book_id = $request->book_id;
-    //     $brokenBookDetail->qty_broken = $request->qty_broken;
-    //     $brokenBookDetail->unit_price = $request->unit_price;
-    //     $brokenBookDetail->total_price = $request->total_price;
-    //     $brokenBookDetail->notes = $request->notes; // Optional field
-    //     $brokenBookDetail->librarian_id = auth()->user()->id; // Assign the current logged-in librarian
-    //     $brokenBookDetail->save();
-
-    //     // Redirect with success message
-    //     return redirect()->back()->with('success', 'Broken book details saved successfully!');
-    // }
 }
