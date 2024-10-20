@@ -15,24 +15,24 @@ use Illuminate\Http\Request;
 
 class ReturnBrokenController extends Controller
 {
-    public function createbroken($student, $borrow){
-// Fetch student and borrow records
-$studentRecord = Student::find($student);
-$borrowRecord = Borrow::find($borrow);
+ public function createbroken($student, $borrow){
+        // Fetch student and borrow records
+        $studentRecord = Student::find($student);
+        $borrowRecord = Borrow::find($borrow);
 
-// Check if student and borrow records exist
-if (!$studentRecord || !$borrowRecord) {
-    return redirect()->back()->with('error', 'Invalid student or borrow record.');
-}
+        // Check if student and borrow records exist
+        if (!$studentRecord || !$borrowRecord) {
+            return redirect()->back()->with('error', 'Invalid student or borrow record.');
+        }
 
-// Get all book IDs associated with this borrow record from borrowdetails
-$bookIds = BorrowDetail::where('borrow_id', $borrow)->pluck('book_id');
+        // Get all book IDs associated with this borrow record from borrowdetails
+        $bookIds = BorrowDetail::where('borrow_id', $borrow)->pluck('book_id');
 
-// Retrieve the books based on the book IDs found
-$books = Book::whereIn('id', $bookIds)->get();
+        // Retrieve the books based on the book IDs found
+        $books = Book::whereIn('id', $bookIds)->get();
 
 // Retrieve broken book details and join with brokenbooks based on brokenbook_id
-$brokenBooks = BrokenBookDetail::join('brokenbooks', 'brokenbookdetails.brokenbook_id', '=', 'brokenbooks.brokenbook_id')
+    $brokenBooks = BrokenBookDetail::join('brokenbooks', 'brokenbookdetails.brokenbook_id', '=', 'brokenbooks.brokenbook_id')
     ->join('books', 'brokenbookdetails.book_id', '=', 'books.id') // Join with books table
     ->join('users', 'brokenbookdetails.librarian_id', '=', 'users.id') // Join with users table
     ->where('brokenbooks.borrow_id', $borrow) // Filter by borrow_id
@@ -47,18 +47,18 @@ $brokenBooks = BrokenBookDetail::join('brokenbooks', 'brokenbookdetails.brokenbo
     )
     ->get();
 
-// Pass the data to the view
-return view('returns.returnbrokenv', [
-    'student' => $studentRecord,
-    'brokenBooks' => $brokenBooks,
-    'borrow' => $borrowRecord,
-    'borrow_id' => $borrowRecord->borrow_id,
-    'books' => $books,
-]);
+        // Pass the data to the view
+        return view('returns.returnbrokenv', [
+            'student' => $studentRecord,
+            'brokenBooks' => $brokenBooks,
+            'borrow' => $borrowRecord,
+            'borrow_id' => $borrowRecord->borrow_id,
+            'books' => $books,
+        ]);
     }
 
     public function store(Request $request)
-{
+    {
     // Validate the input
     $request->validate([
         'borrow_id' => 'required|exists:borrows,borrow_id', // Validate borrow_id
@@ -114,8 +114,8 @@ return view('returns.returnbrokenv', [
 
     // Redirect with success message
     return redirect()->back()->with('success', 'Broken book details saved successfully!');
-}
+    }
 
-    
+
 
 }
