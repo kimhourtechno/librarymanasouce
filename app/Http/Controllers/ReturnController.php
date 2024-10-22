@@ -58,7 +58,7 @@ class ReturnController extends Controller
 
     // Check if the total returned and broken quantity exceeds the borrowed quantity
     if ($newTotalReturnedQty > $borrowedQty) {
-        return redirect()->back()->with('error', 'The total returned and broken quantity exceeds the borrowed quantity. No further returns are allowed.');
+        return redirect()->back()->with('error', 'The total returned and broken quantity. No further returns are allowed.');
     }
 
     // Check if there is an existing ReturnBook record with the same borrow_id and today's date

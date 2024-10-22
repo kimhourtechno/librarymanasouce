@@ -93,7 +93,7 @@ class ReturnBrokenController extends Controller
     // Check if the sum of returned and broken quantities exceeds the borrowed quantity
     if ($newTotalQtyReturnedAndBroken > $qtyBorrowed) {
         // return redirect()->back()->withErrors(['qty_broken' => 'The total quantity of returned and broken books exceeds the borrowed quantity.']);
-        return redirect()->back()->with('error', 'The total quantity of returned and broken books exceeds the borrowed quantity.');
+        return redirect()->back()->with('error', 'The total returned and broken quantity. No further returns are allowed');
 
     }
 
