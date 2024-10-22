@@ -24,7 +24,6 @@ class ReturnController extends Controller
         'qty' => 'required|integer|min:1',
         'unit_price' => 'nullable|numeric|min:0',
         'total_price' => 'nullable|numeric|min:0',
-        'notes' => 'nullable|string',
     ]);
 
     $book = Book::findOrFail($request->input('book_id'));
