@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>A I S Schoolដថង្ដសថ្ដ</title>
+  <title>Library System</title>
 
   <link href="{{ asset('bootstrap/style.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -168,43 +168,34 @@
 
 
 
+          {{-- ==============User========= --}}
           <li class="nav-item">
-              <a href="#" class="nav-link">
-                  <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
-                <p>
-                  User
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
+            <a href="#" class="nav-link">
+                <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
+              <p>
+                User
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('user.create') }}" class="nav-link">
+
+                  <i class="far fa-solid fa-folder"></i>
+                  <p>Create User</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('user.index') }}" class="nav-link">
 
                     <i class="far fa-solid fa-folder"></i>
-                    <p>Create User</p>
+                    <p>List User</p>
                   </a>
                 </li>
               </ul>
-              @can('isAdmin')
-              <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                      <a href="{{ route('user.index') }}" class="nav-link">
-                          <i class="far fa-solid fa-folder"></i>
-                          <p>List User</p>
-                      </a>
-                  </li>
-              </ul>
-              @endcan
-              {{-- <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ route('user.index') }}" class="nav-link">
-
-                      <i class="far fa-solid fa-folder"></i>
-                      <p>List User</p>
-                    </a>
-                  </li>
-                </ul> --}}
-            </li>
+        </li>
 
       </nav>
       <!-- /.sidebar-menu -->

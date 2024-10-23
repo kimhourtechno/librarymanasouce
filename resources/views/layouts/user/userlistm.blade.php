@@ -106,8 +106,19 @@
 
 
           </li>
+          <li class="nav-item">
+            <a href="{{ url('membership') }}" class="nav-link ">
+                <i class="fa-solid fa-retweet"></i>
+              <p>
+                Borrower
 
-          
+              </p>
+            </a>
+
+          </li>
+
+
+
 
 
                <!-- resources/views/layouts/nav.blade.php -->
@@ -115,8 +126,8 @@
 $user = Auth::user(); // Get the currently authenticated user
 @endphp
 
-<li class="nav-item">
-<a href="#" class="nav-link">
+<li class="nav-item menu-open">
+<a href="#" class="nav-link active">
     <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
     <p>
         User
@@ -133,8 +144,8 @@ $user = Auth::user(); // Get the currently authenticated user
         </li>
     </ul>
     <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="{{ route('user.index') }}" class="nav-link">
+        <li class="nav-item ">
+            <a href="{{ route('user.index') }}" class="nav-link active">
                 <i class="far fa-solid fa-folder"></i>
                 <p>List User</p>
             </a>

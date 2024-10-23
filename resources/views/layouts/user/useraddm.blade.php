@@ -106,8 +106,8 @@
                 </a>
               </li>
 
-              <li class="nav-item menu-open">
-                <a href="{{ url('membership') }}" class="nav-link active">
+              <li class="nav-item">
+                <a href="{{ url('membership') }}" class="nav-link ">
                     <i class="fa-solid fa-retweet"></i>
                   <p>
                     Borrower
@@ -118,13 +118,13 @@
               </li>
 
 
-            <!-- resources/views/layouts/nav.blade.php -->
+
     @php
     $user = Auth::user(); // Get the currently authenticated user
     @endphp
 
-    <li class="nav-item">
-    <a href="#" class="nav-link">
+    <li class="nav-item menu-open">
+    <a href="#" class="nav-link active">
         <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
         <p>
             User
@@ -134,7 +134,7 @@
     @if($user && $user->role !== 'user') <!-- Check if user is logged in and has a role other than 'user' -->
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="{{ route('user.create') }}" class="nav-link">
+                <a href="{{ route('user.create') }}" class="nav-link active">
                     <i class="far fa-solid fa-folder"></i>
                     <p>Create User</p>
                 </a>
@@ -160,7 +160,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-   
+
 
     @yield('useraddtly')
 

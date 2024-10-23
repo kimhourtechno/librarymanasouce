@@ -9,7 +9,7 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>{{ $studentCount }}</h3>
+                        <h3>{{ $activeStudentCount  }}</h3>
                         <p>Students</p>
                     </div>
                     <div class="icon">
@@ -24,7 +24,7 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>{{ $bookCount }}</h3>
+                        <h3>{{  $activeBookCount }}</h3>
 
                         <p>Books</p>
                     </div>
@@ -40,7 +40,7 @@
                 <!-- small box -->
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>{{ $returnCount }}</h3>
+                        <h3>{{  $totalQtyReturn }}</h3>
                         <p>Returns</p>
                     </div>
                     <div class="icon">
@@ -54,7 +54,7 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>{{ $borrowCount }}</h3>
+                        <h3>{{  $totalQtyBorrow }}</h3>
                         <p>Borrows</p>
                     </div>
                     <div class="icon">
@@ -67,7 +67,7 @@
                 <!-- small box -->
                 <div  class="small-box bg-secondary">
                     <div class="inner">
-                        <h3>{{ $brokenReturnCount }}</h3>
+                        <h3>{{ $totalQtyBroken }}</h3>
                         <p>Broken and Lost</p>
                     </div>
                     <div class="icon">
@@ -80,7 +80,7 @@
                 <!-- small box -->
                 <div class="small-box bg-primary"> <!-- Changed color to primary for user -->
                     <div class="inner">
-                        <h3>2</h3>
+                        <h3>{{  $userCount }}</h3>
                         <p>Users And Admin</p>
                     </div>
 
