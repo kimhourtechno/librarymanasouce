@@ -40,7 +40,7 @@ class AuthController extends Controller
         }
 
         // If user is active, redirect to intended page
-        return redirect()->intended('student'); // Adjust the redirect URL as needed
+        return redirect()->intended('dashboard'); // Adjust the redirect URL as needed
     }
 
     // If credentials do not match, return an error message
