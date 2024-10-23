@@ -17,7 +17,7 @@
 </style>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Advanced form element</title>
+  <title>Library System</title>
 
 
 {{-- <! --------ICON------> --}}
@@ -81,6 +81,11 @@
     <!-- Right navbar links -->
 
     <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown user-menu">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+              <span class="d-none d-md-inline">{{ @Auth::user()->name }}</span>
+            </a>
+       </li>
 
         <a class="nav-link" href="{{ route('logout') }}" role="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fa-solid fa-right-from-bracket"></i>
@@ -215,9 +220,7 @@ $user = Auth::user(); // Get the currently authenticated user
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 </strong> All rights reserved.
+
   </footer>
 
   <!-- Control Sidebar -->
