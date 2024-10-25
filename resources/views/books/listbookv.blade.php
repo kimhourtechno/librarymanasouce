@@ -27,8 +27,8 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                            @if(session('error'))
-                <p style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px;">
+               @if(session('error'))
+                <p style="background-color: #a63232; color: #e5e3e4; padding: 10px; border-radius: 5px;">
                     {{ session('error') }}
                 </p>
             @endif
@@ -49,9 +49,10 @@
                         </div>
                     </div>
                     <div class="col">
-                        <button class="btn btn-default btn-sm" onclick="location.reload();">
+
+                        <a href="{{ route('book.index') }}" class="btn btn-default btn-sm">
                             <i class="fas fa-sync"></i> Refresh
-                        </button>
+                        </a>
                     </div>
 
 
