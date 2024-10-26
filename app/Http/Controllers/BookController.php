@@ -39,18 +39,7 @@ class BookController extends Controller
 
 
     }
-    // public function getBookDetails($id)
-    // {
-    //     $book = Book::find($id);
 
-    //     if ($book) {
-    //         return response()->json([
-    //             'unit_price' => $book->	book_price,
-    //         ]);
-    //     }
-    //     return response()->json(['error' => 'Book not found'], 404);
-
-    // }
     public function search(Request $request)
 {
     $query = $request->input('query');
@@ -157,118 +146,39 @@ class BookController extends Controller
         $book = Book::find($id);
         $book->bookname = $r->bookname;
         $book->book_qty = $r->book_qty;
-        $book->available = $r->book_qty;
+        $book->available = $r->available;
         $book->book_price = $r->book_price;
         $book->date_post = $r->date_post;
         $book->book_category_id = $r->book_category_id;
         $book->author_id = $r->author_id;
-        $book->shelf_id = $r->shelf_id;
+        $book->shelve_name = $r->shelve_name;
         $book->years_published = $r->years_published;
         $book->lost_price = $r->lost_price;
-
-
-
-
-        $i = $book->save();
-        if($i){
-            return redirect()->route('book.edit',$id)
-            ->with('success','Data has been saved');
-        }
-        else{
-            return redirect()->route('book.edit',$id)
-            ->with('errore','Fial to saved data!');
-        }
+        // Check if the book data has been modified
+    if (!$book->isDirty()) {
+        return redirect()->route('book.edit', $id)
+            ->with('warning', 'No changes detected. Please make edits before saving.');
     }
 
-//     public function index()
-// {
+    // Save only if changes were made
+    if ($book->save()) {
+        return redirect()->route('book.edit', $id)
+            ->with('success', 'Data has been saved');
+    } else {
+        return redirect()->route('book.edit', $id)
+            ->with('error', 'Failed to save data!');
+    }
 
 
-//     $data['books'] = DB::table('books')
-//          ->join('book_categorys', 'books.book_category_id', '=', 'book_categorys.book_category_id')
-//         // ->join('book_categorys','books.book_category_id','=','book_categorys.book_category_id')
-
-//         ->join('authors', 'books.author_id', '=', 'authors.author_id')
-//         ->select(
-//             'books.*',
-//             'book_categorys.book_category_name as bookcategory',
-//             'authors.author_name as gname'
-//         ) // Adjust column names as neede
-//         // ->select('books.*', 'author_name as gname')  // Adjust column names as needed
-//        ->orderBy('id', 'Asc')
-//         ->paginate(config('app.row'));  // Ensure 'row' is set in your config/app.php
-
-//     return view('books.listbook', $data);
-// }
-// public function save(Request $r){
-//     $data = array (
-//         'bookname' => $r-> bookname,
-//         'date_post' => $r -> date_post,
-//         'author_id' => $r -> author_id,
-//         'book_category_id' => $r ->book_category_name,
-//         'book_qty' => $r -> book_qty,
-//         'years_published' => $r-> years_published,
-
-//     );
-//     $i = DB::table('books') -> insert($data);
-//     if($i){
-//         return redirect('/addbook')
-//         ->with('success', 'Data has beeb saved');
-//     }
-//     else{
-//         return redirect('/addbook');
-//     }
-//     // $data = $r->except('_token');
-//     // dd($data);
-// }
-// public function add(){
-
-
-//     $data['book_categorys'] = DB::table('book_categorys')->get();
-//     $data['authors'] = DB::table('authors')->get();
-
-
-//     // $data['regions'] = DB::table('regions')->get();
-//     return view('books.addbook', $data);
-
-//     // $data['book_categorys'] = DB::table('book_categorys')
-//     // ->get();
-//     // return view('books.addbook',$data);
-// }
-// public function delete($id){
-//     $i = DB::table('books')
-//     ->where('id',$id)
-//     ->delete();
-//     return redirect('listbook')
-//     ->with('success','Data has been Delete');
-// }
-// public function edit($id){
-
-//     $book = DB::table('books')
-//     ->find($id);
-//     $authors = DB::table('authors')
-//     ->get();
-//     $book_categorys = DB::table('book_categorys')
-//     ->get();
-
-//     return view('books.edite',compact('book','authors','book_categorys'));
-// }
-// public function update(Request $r){
-//     $data = $r->except('_token','id');
-
-//     $i = DB::table('books')
-//     ->where('id',$r->id)
-//     ->update($data);
-
-//     if($i){
-//         return redirect('book/edit/'.$r->id)
-//         ->with('success','Data has been saved');
-//     }
-//     else{
-//         return redirect('book/edit/'.$r->id)
-//         ->with('success','Data has been saved');
-//     }
-// }
-
+        // $i = $book->save();
+        // if($i){
+        //     return redirect()->route('book.edit',$id)
+        //     ->with('success','Data has been saved');
+        // }
+        // else{
+        //     return redirect()->route('book.edit',$id)
+        //     ->with('errore','Fial to saved data!');
+        // }
+    }
 
 }

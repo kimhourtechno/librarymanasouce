@@ -152,37 +152,37 @@
 
 
            {{-- ==============User========= --}}
-                 <!-- resources/views/layouts/nav.blade.php -->
-@php
-$user = Auth::user(); // Get the currently authenticated user
-@endphp
+           @php
+           $user = Auth::user(); // Get the currently authenticated user
+           @endphp
 
-<li class="nav-item">
-<a href="#" class="nav-link">
-    <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
-    <p>
-        User
-        <i class="fas fa-angle-left right"></i>
-    </p>
-</a>
-@if($user && $user->role !== 'user') <!-- Check if user is logged in and has a role other than 'user' -->
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="far fa-solid fa-folder"></i>
-                <p>Create User</p>
-            </a>
-        </li>
-    </ul>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="{{ route('user.index') }}" class="nav-link">
-                <i class="far fa-solid fa-folder"></i>
-                <p>List User</p>
-            </a>
-        </li>
-    </ul>
-@endif
+           <li class="nav-item">
+           <a href="#" class="nav-link">
+               <i class="fa-solid fa-users" style="color: #e8eaee;"></i>
+               <p>
+                   User
+                   <i class="fas fa-angle-left right"></i>
+               </p>
+           </a>
+           @if($user && $user->role !== 'user') <!-- Check if user is logged in and has a role other than 'user' -->
+               <ul class="nav nav-treeview">
+                   <li class="nav-item">
+                       <a href="{{ route('user.create') }}" class="nav-link">
+                           <i class="far fa-solid fa-folder"></i>
+                           <p>Create User</p>
+                       </a>
+                   </li>
+               </ul>
+               <ul class="nav nav-treeview">
+                   <li class="nav-item">
+                       <a href="{{ route('user.index') }}" class="nav-link">
+                           <i class="far fa-solid fa-folder"></i>
+                           <p>List User</p>
+                       </a>
+                   </li>
+               </ul>
+           @endif
+
 
 </li>
         </ul>

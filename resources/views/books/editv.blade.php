@@ -3,6 +3,39 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
 
+
+    <!-- Main content -->
+    <section class="content">
+         <!-- Alert Messages -->
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if(session('warning'))
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ session('warning') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<!-- Main content -->
+<section class="content">
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid" style="padding: 1rem;">
@@ -34,7 +67,7 @@
                           <input type="text" class="form-control" id="book_qty" name="book_qty" value="{{ $books->book_qty }}" required>
                       </div>
                       <div class="form-group">
-                          <label for="book_price">Price</label>
+                          <label for="book_price">Price ($)</label>
                           <input type="text" class="form-control" id="book_price" name="book_price" value="{{ $books->book_price }}" required>
                       </div>
                       <div class="form-group">
@@ -44,8 +77,9 @@
 
                     <div class="form-group">
                         <label for="lost_price"> lost book $</label>
-                        <input type="text" class="form-control" id="lost_price" name="lost_pricce" value="{{ $books->lost_price }}"  required>
+                        <input type="text" class="form-control" id="lost_price" name="lost_price" value="{{ $books->lost_price }}"  required>
                     </div>
+
 
 
                     </div>
@@ -62,15 +96,10 @@
                       </div>
                       <!-- /.form-group -->
                       <div class="form-group">
-                          <label for="shelf_id">shelves</label>
+                          <label for="shelve_name">shelves</label>
                           <input type="text" class="form-control" id="shelve_name" name="shelve_name" value="{{ $books->shelve_name}}" required autofocus>
 
-                          {{-- <select class="form-control" id="shelf_id" name="shelf_id" style="width: 100%;" required>
-                            <option value="">Select type of book</option>
-                            @foreach ($shelves as $sh )
-                                <option value="{{ $sh->shelf_id }}" {{ $sh->shelf_id ==$books->shelf_id?'selected':'' }}>{{ $sh->shelf_name }}</option>
-                            @endforeach
-                          </select> --}}
+
                       </div>
                       <div class="form-group">
                         <label for="book_category_id">Type of Books</label>
@@ -85,7 +114,15 @@
                         <label for="years_published">Years Of Publication</label>
                         <input type="text" class="form-control" id="years_published" name="years_published" value="{{ $books->years_published }}" required autofocus>
                     </div>
+                    <div class="form-group">
+                        <label for="available"> Available Books
+                        </label>
+                        <input type="text" class="form-control" id="available" name="available" value="{{ $books->available }}"  required>
                     </div>
+
+
+                    </div>
+
                     <!-- /.col -->
 
 
