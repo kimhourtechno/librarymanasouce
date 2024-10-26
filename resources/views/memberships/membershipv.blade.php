@@ -39,7 +39,22 @@
                                         <td>{{ $student->borrow_date }}</td>
                                         <td>{{ $student->return_date }}</td>
                                         <td>{{ now()->format('d-m-Y') }}</td>
-                                        <td>N?Q</td>
+                                        <td>
+                                            @php
+                                            $qty_return = $student->returnbookdetails ? $student->returnbookdetails->sum('qty_return') : 0;
+                                            $qty_broken = $student->brokenbookdetails ? $student->brokenbookdetails->sum('qty_broken') : 0;
+                                            $total_qty = $student->borrowdetails ? $student->borrowdetails->sum('qty') : 0;
+                                            $total_returned_or_broken = $qty_return + $qty_broken;
+                                        @endphp
+
+                                        @if ($total_returned_or_broken === 0)
+                                            <span class="badge badge-info">Borrowed</span>
+                                        @elseif ($total_returned_or_broken > 0 && $total_returned_or_broken < $total_qty)
+                                            <span class="badge badge-warning">Partial Return</span>
+                                        @elseif ($total_returned_or_broken === $total_qty)
+                                            <span class="badge badge-success">Returned</span>
+                                        @endif
+                                        </td>
                                         <td>{{ $student->librarian_name }}</td>
                                         <td>
                                             <a href="{{ route('borrow.edit', [$student->id, $student->borrow_id]) }}" class="btn btn-info btn-sm" title="View">
@@ -52,8 +67,6 @@
                                             <a href="{{ route('returnbroken.show', [$student->id, $student->borrow_id]) }}" class="btn btn-danger btn-sm" title="Return Broken">
                                                 <i class="fas fa-exclamation-triangle" style="color: rgb(118, 73, 73);"></i>
                                             </a>
-
-
                                         </td>
                                     </tr>
                                 @endforeach
