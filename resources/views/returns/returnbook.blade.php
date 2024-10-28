@@ -115,6 +115,7 @@
                       <th>Due Return Date</th>
                       <th>Fine</th>
                       <th>Rememnig</th>
+                      <th>Remark</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -147,9 +148,10 @@
                             foreach ($returnedBooks as $returnedBook) {
                                 $remainingQty -= $returnedBook->qty_return; // Subtract each returned quantity
                             }
-                        @endphp
+                         @endphp
 
-                        <td>{{ max($remainingQty, 0) }}</td> <!-- Display remaining quantity, ensure it's not negative -->
+                             <td>{{ max($remainingQty, 0) }}</td> <!-- Display remaining quantity, ensure it's not negative -->
+                             <td>{{ $book->note }}</td>
 
                         </tr>
                     @endforeach

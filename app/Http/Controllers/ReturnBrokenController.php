@@ -44,7 +44,9 @@ class ReturnBrokenController extends Controller
         'brokenbookdetails.qty_broken',
         'brokenbookdetails.librarian_id',
         'brokenbookdetails.unit_price',
-        'brokenbookdetails.total_price'
+        'brokenbookdetails.total_price',
+        'brokenbookdetails.notes'
+
     )
     ->get();
 

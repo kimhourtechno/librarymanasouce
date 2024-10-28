@@ -94,80 +94,6 @@ class ReturnController extends Controller
     return redirect()->back()->with('success', 'Book return recorded successfully!');
 }
 
-
-    // public function save(Request $request)
-    // {
-
-    //     $validated = $request->validate([
-    //         'book_id' => 'required|exists:books,id',
-    //         'qty' => 'required|integer|min:1',
-    //         'unit_price' => 'nullable|numeric|min:0',
-    //         'total_price' => 'nullable|numeric|min:0',
-    //         'notes' => 'nullable|string',
-    //     ]);
-
-    //     $book = Book::findOrFail($request->input('book_id'));
-
-    //     // Get the total quantity borrowed for this book from the borrows table
-    //     $borrow = BorrowDetail::where('borrow_id', $request->input('borrow_id'))
-    //                 ->where('book_id', $request->input('book_id'))
-    //                 ->first();
-
-    //     if (!$borrow) {
-    //         return redirect()->back()->with('error', 'Borrow record not found for this book.');
-    //     }
-
-    //     $borrowedQty = $borrow->qty; // Quantity of the book borrowed
-
-    //     // Calculate the total quantity returned for this book so far
-    //     $totalReturnedQty = ReturnBookDetail::where('book_id', $request->input('book_id'))
-    //                           ->whereHas('returnbook', function ($query) use ($request) {
-    //                               $query->where('borrow_id', $request->input('borrow_id'));
-    //                           })
-    //                           ->sum('qty_return');
-
-    //     // Calculate the new total if we add this return
-    //     $newTotalReturnedQty = $totalReturnedQty + $request->input('qty');
-
-    //     // Check if the returned quantity exceeds the borrowed quantity
-    //     if ($newTotalReturnedQty > $borrowedQty) {
-    //         return redirect()->back()->with('error', 'The book has already been returned. No further returns are allowed.');
-    //     }
-
-    //     // Check if there is an existing ReturnBook record with the same borrow_id and today's date
-    //     $existingReturnBook = ReturnBook::where('borrow_id', $request->input('borrow_id'))
-    //                                     ->whereDate('return_date', now()->toDateString())
-    //                                     ->first();
-
-    //     if (!$existingReturnBook) {
-    //         // No existing record for the same borrow_id with today's date, so create a new ReturnBook record
-    //         $returnBook = new ReturnBook();
-    //         $returnBook->borrow_id = $request->input('borrow_id');
-    //         $returnBook->return_date = now(); // Set the return date to now
-    //         $returnBook->save();
-    //     } else {
-    //         // Use the existing ReturnBook record
-    //         $returnBook = $existingReturnBook;
-    //     }
-
-    //     // Save to returnbookdetails table
-    //     $returnBookDetail = new ReturnBookDetail();
-    //     $returnBookDetail->returnbook_id = $returnBook->id; // Foreign key reference to returnbooks table
-    //     $returnBookDetail->book_id = $request->input('book_id');
-    //     $returnBookDetail->qty_return = $request->input('qty');
-    //     $returnBookDetail->totalprice = $request->input('total_price');
-    //     $returnBookDetail->note = $request->input('notes');
-    //     $returnBookDetail->save();
-
-    //     // Update the book's qty_available by adding the returned quantity
-    //     $book->available += $request->input('qty'); // Increase the book's qty_available by qty_return
-    //     $book->save();
-
-    //     // Redirect back with a success message
-    //     return redirect()->back()->with('success', 'Book return recorded successfully!');
-
-    // }
-
     public function returnbook($student_id, $borrow_id){
 
         $returnBooks = ReturnBook::join('returnbookdetails', 'returnbooks.id', '=', 'returnbookdetails.returnbook_id')
@@ -178,7 +104,8 @@ class ReturnController extends Controller
             'books.bookname as book_name',
             'returnbooks.return_date',   // Include return_date field
             'returnbookdetails.qty_return as qty_return',
-            'returnbookdetails.totalprice as total_price'  // Include totalprice field
+            'returnbookdetails.totalprice as total_price',  // Include totalprice field
+            'returnbookdetails.note'
 
 
         )

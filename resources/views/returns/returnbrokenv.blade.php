@@ -116,6 +116,8 @@
                                 <th>Unit Price</th>
                                 <th>Total Price</th>
                                 <th>Return By</th>
+                                <th>Remark</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -126,6 +128,7 @@
                             <td>{{ number_format($brokenBook->unit_price, 2) }} $</td>
                             <td>{{ number_format($brokenBook->total_price, 2) }} $</td>
                             <td>{{ $brokenBook->user_name }}</td> <!-- Display User Name -->
+                            <td>{{ $brokenBook->notes }}</td>
                         </tr>
                     @empty
                         <tr>
