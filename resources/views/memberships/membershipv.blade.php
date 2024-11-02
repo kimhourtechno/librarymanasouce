@@ -47,13 +47,21 @@
                                             $total_returned_or_broken = $qty_return + $qty_broken;
                                         @endphp
 
-                                        @if ($total_returned_or_broken === 0)
+
+                                         @if ($total_returned_or_broken === 0)
                                             <span class="badge badge-info">Borrowed</span>
                                         @elseif ($total_returned_or_broken > 0 && $total_returned_or_broken < $total_qty)
                                             <span class="badge badge-warning">Partial Return</span>
-                                        @elseif ($total_returned_or_broken === $total_qty)
+                                            @elseif ($total_returned_or_broken === $total_qty)
+                                            @if ($qty_broken > 0)
+                                                <span class="badge badge-danger">Returned/Broken</span>
+                                            @else
+                                                <span class="badge badge-success">Returned</span>
+                                            @endif
+                                            @endif
+                                        {{-- @elseif ($total_returned_or_broken === $total_qty)
                                             <span class="badge badge-success">Returned</span>
-                                        @endif
+                                        @endif --}}
                                         </td>
                                         <td>{{ $student->librarian_name }}</td>
                                         <td>

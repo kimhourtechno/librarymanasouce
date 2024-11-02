@@ -21,12 +21,35 @@ class UserController extends Controller
         // Apply the admin middleware to specific actions
         $this->middleware('admin')->only(['index', 'show', 'edit', 'update', 'destroy']);
     }
-    public function index(){
-        // Fetch all users from the User model
-        $users = User::where('remove', 0)->get();
-        // Pass the users data to the view
-        return view('user.userlistv', ['users' => $users]);
-    }
+    public function index(Request $request)
+{
+    // Get the search query from the request
+    $search = $request->input('table_search');
+
+    // Fetch users based on the search query, if provided
+    $users = User::where('remove', 0)
+                ->when($search, function ($query, $search) {
+                    return $query->where(function ($query) use ($search) {
+                        $query->where('name', 'LIKE', "%{$search}%")
+                              ->orWhere('email', 'LIKE', "%{$search}%")
+                              ->orWhere('phone', 'LIKE', "%{$search}%");
+                    });
+                })
+                ->get();
+
+    // Pass the users data to the view along with the search term
+    return view('user.userlistv', [
+        'users' => $users,
+        'search' => $search
+    ]);
+}
+
+    // public function index(){
+    //     // Fetch all users from the User model
+    //     $users = User::where('remove', 0)->get();
+    //     // Pass the users data to the view
+    //     return view('user.userlistv', ['users' => $users]);
+    // }
     public function create(){
         return view('user.useraddv');
     }

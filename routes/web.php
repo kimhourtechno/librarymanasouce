@@ -107,15 +107,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/search/thisweek', [SearchController::class, 'searchThisweek'])->name('search.thisweek');
     Route::get('/search/thismonth', [SearchController::class, 'searchThismonth'])->name('search.thismonth');
 });
-
-//
-
-
-//
-//
-
-
-
 Route::view('/register', 'register');
 Route::post('/register/save','App\Http\Controllers\RegisterController@save')
         ->name('register.name');
