@@ -36,7 +36,7 @@
                         <input type="email" id="email" name="email" class="form-control" placeholder="Email" required value="{{ $user->email }}">
                     </div>
 
-            
+
 
                     <div class="form-group">
                         <label for="password">New Password</label>
@@ -69,6 +69,37 @@
                     <div class="form-group">
                         <label for="placeofbirth">Place of Birth</label>
                         <select class="form-control" id="place_of_birth" name="place_of_birth" style="width: 100%;" required>
+                            <option value="" disabled>Select Province</option>
+                            <option value="Banteay Meanchey" {{ $user->place_of_birth == 'Banteay Meanchey' ? 'selected' : '' }}>Banteay Meanchey</option>
+                            <option value="Battambang" {{ $user->place_of_birth == 'Battambang' ? 'selected' : '' }}>Battambang</option>
+                            <option value="Kampong Cham" {{ $user->place_of_birth == 'Kampong Cham' ? 'selected' : '' }}>Kampong Cham</option>
+                            <option value="Kampong Chhnang" {{ $user->place_of_birth == 'Kampong Chhnang' ? 'selected' : '' }}>Kampong Chhnang</option>
+                            <option value="Kampong Speu" {{ $user->place_of_birth == 'Kampong Speu' ? 'selected' : '' }}>Kampong Speu</option>
+                            <option value="Kampong Thom" {{ $user->place_of_birth == 'Kampong Thom' ? 'selected' : '' }}>Kampong Thom</option>
+                            <option value="Kampot" {{ $user->place_of_birth == 'Kampot' ? 'selected' : '' }}>Kampot</option>
+                            <option value="Kandal" {{ $user->place_of_birth == 'Kandal' ? 'selected' : '' }}>Kandal</option>
+                            <option value="Koh Kong" {{ $user->place_of_birth == 'Koh Kong' ? 'selected' : '' }}>Koh Kong</option>
+                            <option value="Kratie" {{ $user->place_of_birth == 'Kratie' ? 'selected' : '' }}>Kratie</option>
+                            <option value="Mondulkiri" {{ $user->place_of_birth == 'Mondulkiri' ? 'selected' : '' }}>Mondulkiri</option>
+                            <option value="Oddar Meanchey" {{ $user->place_of_birth == 'Oddar Meanchey' ? 'selected' : '' }}>Oddar Meanchey</option>
+                            <option value="Pailin" {{ $user->place_of_birth == 'Pailin' ? 'selected' : '' }}>Pailin</option>
+                            <option value="Phnom Penh" {{ $user->place_of_birth == 'Phnom Penh' ? 'selected' : '' }}>Phnom Penh</option>
+                            <option value="Preah Vihear" {{ $user->place_of_birth == 'Preah Vihear' ? 'selected' : '' }}>Preah Vihear</option>
+                            <option value="Prey Veng" {{ $user->place_of_birth == 'Prey Veng' ? 'selected' : '' }}>Prey Veng</option>
+                            <option value="Pursat" {{ $user->place_of_birth == 'Pursat' ? 'selected' : '' }}>Pursat</option>
+                            <option value="Ratanakiri" {{ $user->place_of_birth == 'Ratanakiri' ? 'selected' : '' }}>Ratanakiri</option>
+                            <option value="Siem Reap" {{ $user->place_of_birth == 'Siem Reap' ? 'selected' : '' }}>Siem Reap</option>
+                            <option value="Preah Sihanouk" {{ $user->place_of_birth == 'Preah Sihanouk' ? 'selected' : '' }}>Preah Sihanouk</option>
+                            <option value="Stung Treng" {{ $user->place_of_birth == 'Stung Treng' ? 'selected' : '' }}>Stung Treng</option>
+                            <option value="Svay Rieng" {{ $user->place_of_birth == 'Svay Rieng' ? 'selected' : '' }}>Svay Rieng</option>
+                            <option value="Takeo" {{ $user->place_of_birth == 'Takeo' ? 'selected' : '' }}>Takeo</option>
+                            <option value="Tboung Khmum" {{ $user->place_of_birth == 'Tboung Khmum' ? 'selected' : '' }}>Tboung Khmum</option>
+                        </select>
+                    </div>
+
+                    {{-- <div class="form-group">
+                        <label for="placeofbirth">Place of Birth</label>
+                        <select class="form-control" id="place_of_birth" name="place_of_birth" style="width: 100%;" required>
                             <option value="" disabled>Select Grade/Class</option>
                             <option value="PP" {{ $user->place_of_birth == 'PP' ? 'selected' : '' }}>PP</option>
                             <option value="SH" {{ $user->place_of_birth == 'SH' ? 'selected' : '' }}>SH</option>
@@ -76,7 +107,7 @@
                             <option value="KP" {{ $user->place_of_birth == 'KP' ? 'selected' : '' }}>KP</option>
                         </select>
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="role">Role</label>
 

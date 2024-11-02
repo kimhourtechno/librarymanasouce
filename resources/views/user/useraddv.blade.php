@@ -57,13 +57,43 @@
                     <div class="form-group">
                         <label for="placeofbirth">Place of Birth</label>
                         <select class="form-control" id="place_of_birth" name="place_of_birth" style="width: 100%;" required>
+                            <option value="" disabled selected>Select Province</option>
+                            <option value="Banteay Meanchey">Banteay Meanchey</option>
+                            <option value="Battambang">Battambang</option>
+                            <option value="Kampong Cham">Kampong Cham</option>
+                            <option value="Kampong Chhnang">Kampong Chhnang</option>
+                            <option value="Kampong Speu">Kampong Speu</option>
+                            <option value="Kampong Thom">Kampong Thom</option>
+                            <option value="Kampot">Kampot</option>
+                            <option value="Kandal">Kandal</option>
+                            <option value="Koh Kong">Koh Kong</option>
+                            <option value="Kratie">Kratie</option>
+                            <option value="Mondulkiri">Mondulkiri</option>
+                            <option value="Oddar Meanchey">Oddar Meanchey</option>
+                            <option value="Pailin">Pailin</option>
+                            <option value="Phnom Penh">Phnom Penh</option>
+                            <option value="Preah Vihear">Preah Vihear</option>
+                            <option value="Prey Veng">Prey Veng</option>
+                            <option value="Pursat">Pursat</option>
+                            <option value="Ratanakiri">Ratanakiri</option>
+                            <option value="Siem Reap">Siem Reap</option>
+                            <option value="Preah Sihanouk">Preah Sihanouk</option>
+                            <option value="Stung Treng">Stung Treng</option>
+                            <option value="Svay Rieng">Svay Rieng</option>
+                            <option value="Takeo">Takeo</option>
+                            <option value="Tboung Khmum">Tboung Khmum</option>
+                        </select>
+                    </div>
+                    {{-- <div class="form-group">
+                        <label for="placeofbirth">Place of Birth</label>
+                        <select class="form-control" id="place_of_birth" name="place_of_birth" style="width: 100%;" required>
                           <option value="" disabled selected>Select Grade/Class</option>
                           <option value="PP">PP</option>
                           <option value="SH">SH</option>
                           <option value="KTH">KTH</option>
                           <option value="KP">KP</option>
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="role">Role</label>
 
